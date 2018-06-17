@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostJobsComponent } from './post-jobs/post-jobs.component';
@@ -15,7 +16,7 @@ export const jobRoutes = [
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule, RouterModule.forChild(jobRoutes)
   ],
   declarations: [PostJobsComponent, ViewJobsComponent, ReviewApplicationsComponent, JobRatingComponent, MyApplicationsComponent, ViewJobComponent]
 })
