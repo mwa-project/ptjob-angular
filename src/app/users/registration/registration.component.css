@@ -12,5 +12,10 @@ div.registration-form {
   }
 
   .example-container .mat-radio-button {
-    margin: 0 5px;
+    margin: 5px 15px;
+  }
+
+
+  .mybutton {
+     margin: 10px;
   }
