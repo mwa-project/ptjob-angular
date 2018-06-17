@@ -1,0 +1,16 @@
+
+div.registration-form {
+
+    text-align: center;
+    float: left;
+    margin: 0px 80px;
+}
+
+.example-card {
+    /* max-width: 900px; */
+    /* max-height: 200px; */
+  }
+
+  .example-container .mat-radio-button {
+    margin: 0 5px;
+  }

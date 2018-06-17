@@ -15,6 +15,6 @@ export const userRoutes = [
   imports: [
     CommonModule, RouterModule.forChild(userRoutes)
   ],
-  declarations: [  LoginComponent, RegistrationComponent, UserDetailsComponent]
+  declarations: [  LoginComponent, UserDetailsComponent]
 })
 export class UsersModule { }

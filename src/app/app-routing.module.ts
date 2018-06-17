@@ -1,3 +1,4 @@
+import { RegistrationComponent } from './users/registration/registration.component';
 import { HomeComponent } from './users/home/home.component';
 import { LoginComponent } from './users/login/login.component';
 // import { HomeComponent } from './users/home.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
  { path: "my-applications", component: MyApplicationsComponent},
  { path: "view-job/:id", component: ViewJobComponent, loadChildren: './jobs/jobs.module#JobsModule' },
  { path: "view-jobs", component: ViewJobsComponent},
- { path: "post-job", component: PostJobsComponent}
+ { path: "post-job", component: PostJobsComponent},
+ { path: "sign-up", component: RegistrationComponent}
 ];
 
 @NgModule({
