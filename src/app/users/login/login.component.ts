@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,10 @@ export class LoginComponent implements OnInit {
 
   loginForm : FormGroup;
   hide = true;
-  constructor(public fb: FormBuilder, private userService: UserService) {
+  constructor(private router: Router, public fb: FormBuilder, private userService: UserService) {
 
     this.loginForm = fb.group({
-      'userName' : ['carly1', Validators.required],
+      'userName' : ['carl1376420801', Validators.required],
       'password' : ['123456', Validators.required]
     });
     this.loginForm.valueChanges.subscribe(x => console.log(x));
@@ -30,6 +31,8 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if (res) {
           console.log('login success');
+          this.router.navigate(['/']);
+
         } 
     }, err => {
       console.log('login faild!');

@@ -14,7 +14,7 @@ export class UserService {
 
   constructor(public http:HttpClient) { 
     this.signUpLink  = server.host + ":" + server.port + "/users"
-    this.currentToken = this.retrieve();
+    this.currentToken = this.retrieveToken();
   }
 
   public signUp(user){
@@ -34,10 +34,11 @@ export class UserService {
       }).subscribe(res => {
         console.log(res);
         if (res.hasOwnProperty('token')) {
-          this.store(res['token']);
+          this.storeToken(res['token']);
         }
         if (res.hasOwnProperty('data')){
-          console.log('data:');
+          // console.log('data:');
+          this.storeUser(res['data']);
           console.log(res['data']);
           observer.next(res['data']);
         }
@@ -51,16 +52,26 @@ export class UserService {
   }
 
   private tokenKey:string = 'app_token';
+  private userKey: string = 'user';
 
-  public store(content: string) {
+  private storeToken(content: string) {
     localStorage.setItem(this.tokenKey, JSON.stringify(content));
     console.log('store token: '+ content);
   }
 
-  private retrieve() {
+  private retrieveToken() {
     let storedToken: string = "";
     storedToken = localStorage.getItem(this.tokenKey);
     console.log('got token: ' + storedToken);
     return storedToken;
+  }
+
+  private storeUser(user: Object) {
+  localStorage.setItem(this.userKey, JSON.stringify(user));
+  }
+  public getCurrentUser() {
+    let user = JSON.parse(localStorage.getItem(this.userKey));
+    console.log('got user: ' + user);
+    return user;
   }
 }
