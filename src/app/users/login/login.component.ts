@@ -10,12 +10,12 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
 
   loginForm : FormGroup;
-
+  hide = true;
   constructor(public fb: FormBuilder, private userService: UserService) {
 
     this.loginForm = fb.group({
-      'userName' : ['', Validators.required],
-      'password' : ['', Validators.required]
+      'userName' : ['carly1', Validators.required],
+      'password' : ['123456', Validators.required]
     });
     this.loginForm.valueChanges.subscribe(x => console.log(x));
    }
@@ -23,6 +23,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onSignIn(): void {
-    this.userService
+    console.log('clicked');
+    this.userService.login(
+      this.loginForm.controls['userName'].value, 
+      this.loginForm.controls['password'].value).subscribe(res => {
+        console.log(res);
+        if (res) {
+          console.log('login success');
+        } 
+    }, err => {
+      console.log('login faild!');
+    });
   }
 }
