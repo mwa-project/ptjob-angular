@@ -12,6 +12,7 @@ export class UserService {
   public signUpLink: string;
   public currentToken: string;
 
+
   constructor(public http:HttpClient) { 
 
     this.signUpLink  = this.getUrl("/users");

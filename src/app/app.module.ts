@@ -1,3 +1,4 @@
+import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
 import { server } from './../config';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './users/registration/registration.component';
@@ -45,7 +46,7 @@ import { JobsService } from './jobs/jobs.service';
      })
 
   ],
-  providers: [UserService, JobsService],
+  providers: [UserService, JobsService, ViewJobsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
