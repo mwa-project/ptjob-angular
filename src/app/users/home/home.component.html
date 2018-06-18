@@ -1,6 +1,14 @@
+<div class="container">
+<agm-map [latitude] = "latitude" [longitude] = "longitude" (mapClick) = "onChooseLocation($event)">
+<agm-marker [latitude] = "latitude" [longitude] = "longitude">
+</agm-marker>
+<agm-marker (markerClick)="openWindow({latitude: latitude, longitude:longitude})"  label= "Mrisho Msabaha" [latitude] = "40.72321884127729" [longitude] = "-92.54688858032318">
 
-   <div style="margin: 20px; ">
-       Home Page !
-   </div>
+</agm-marker>
+</agm-map>
 
+<div *ngIf = "clicked">
+    {{clickedLatitude}}, {{clickedLongitude}}
+</div> 
+</div>
 
