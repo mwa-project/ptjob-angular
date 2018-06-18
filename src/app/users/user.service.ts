@@ -12,9 +12,13 @@ export class UserService {
   public signUpLink: string;
   public currentToken: string;
 
+<<<<<<< HEAD
 
   constructor(public http:HttpClient) { 
 
+=======
+  constructor(public http: HttpClient) { 
+>>>>>>> 87741b2e56f28c97f01de11f828847e358ec01f3
     this.signUpLink  = this.getUrl("/users");
     this.currentToken = this.retrieveToken();
 
@@ -59,13 +63,13 @@ export class UserService {
 
   private storeToken(content: string) {
     localStorage.setItem(this.tokenKey, JSON.stringify(content));
-    console.log('store token: '+ content);
+    // console.log('store token: '+ content);
   }
 
   private retrieveToken() {
     let storedToken: string = "";
     storedToken = localStorage.getItem(this.tokenKey);
-    console.log('got token: ' + storedToken);
+    // console.log('got token: ' + storedToken);
     return storedToken;
   }
 
@@ -74,7 +78,7 @@ export class UserService {
   }
   public getCurrentUser() {
     let user = JSON.parse(localStorage.getItem(this.userKey));
-    console.log('got user: ' + user);
+    // console.log('got user: ' + user);
     return user;
   }
 }

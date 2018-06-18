@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -32,3 +33,17 @@
   </table>
   
   
+
+<!-- <p>
+  view-jobs works! 
+</p> -->
+
+<mat-list>
+  <mat-list-item *ngFor="let job of jobs"> 
+      <!-- <span> {{job.description}} </span> -->
+      <a matLine [routerLink]="['/view-job', job._id]" replaceUrl>{{ job.description }}</a>
+
+  </mat-list-item>
+</mat-list>
+
+

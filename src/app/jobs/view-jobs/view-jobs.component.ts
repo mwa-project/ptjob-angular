@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSource } from '@angular/cdk/table'
+
+
+
+import { JobService } from '../../services/job.service';
+
 
 @Component({
   selector: 'app-view-jobs',
@@ -8,12 +12,20 @@ import { DataSource } from '@angular/cdk/table'
 })
 export class ViewJobsComponent implements OnInit {
 
+
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
   
-  constructor() { }
+  // constructor() { }
+
+  jobs: Array<Object>;
+  constructor(private jobService: JobService) { }
+
 
   ngOnInit() {
+    this.jobService.getJobs().subscribe(list => {
+      this.jobs = list;
+    });
   }
 
 }

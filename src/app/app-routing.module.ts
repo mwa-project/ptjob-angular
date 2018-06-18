@@ -16,8 +16,8 @@ const routes: Routes = [
 //  { path: "", component: HomeComponent,  loadChildren: './users/users.module#UsersModule' },
 { path: "", component: HomeComponent, children: jobRoutes },
  { path: "my-applications", component: MyApplicationsComponent},
- { path: "view-job/:id", component: ViewJobComponent, loadChildren: './jobs/jobs.module#JobsModule' },
- { path: "view-jobs", component: ViewJobsComponent},
+ { path: "view-job/:id", component: ViewJobComponent, children: jobRoutes },
+ { path: "view-jobs", component: ViewJobsComponent, children: jobRoutes },
  { path: "post-job", component: PostJobsComponent},
  { path: "sign-up", component: RegistrationComponent},
  { path: "login", component: LoginComponent}

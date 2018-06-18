@@ -24,7 +24,6 @@ import { LoginComponent } from './users/login/login.component';
 import { JobsService } from './jobs/jobs.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
