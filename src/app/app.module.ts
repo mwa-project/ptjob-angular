@@ -1,6 +1,6 @@
 import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
-import { server } from './../config';
-import { HttpClientModule } from '@angular/common/http';
+import { server } from './config';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistrationComponent } from './users/registration/registration.component';
 import { HomeComponent } from './users/home/home.component';
 import { JobsModule } from './jobs/jobs.module';
@@ -22,6 +22,7 @@ import { UserService } from './users/user.service';
 
 import { LoginComponent } from './users/login/login.component';
 import { JobsService } from './jobs/jobs.service';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 @NgModule({
@@ -45,7 +46,14 @@ import { JobsService } from './jobs/jobs.service';
      })
 
   ],
-  providers: [UserService, JobsService, ViewJobsComponent],
+  providers: [
+    UserService, 
+    JobsService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }, ViewJobsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

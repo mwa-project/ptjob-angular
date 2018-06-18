@@ -10,14 +10,18 @@ export class JobService {
 
   constructor(public http: HttpClient) { }
 
-  private getUrl(router: string): string {
-    return server.host + ":" + server.port + router;
+  private getUrl(params?: string): string {
+    let url = server.host + ":" + server.port + '/job-posts';
+    if (params) {
+      url += ('/' + params);
+    }
+    return url;
   }
 
 
   public getJobs(): Observable<Array<Object>> {
     return new Observable(observer => {
-      this.http.get(this.getUrl('/job-posts')).subscribe(result => {
+      this.http.get(this.getUrl()).subscribe(result => {
         observer.next(result['data']);
       }, err => {
         observer.error(err);
@@ -28,14 +32,6 @@ export class JobService {
   }
 
   public getJobById(jobId: string): Observable<Object> {
-    return new Observable(observer => {
-      this.http.get(this.getUrl('/job_posts/' + jobId)).subscribe(result => {
-        observer.next(result['data']);
-      }, err => {
-        observer.error(err);
-      }, () => {
-        observer.complete();
-      });
-    });
+    return this.http.get(this.getUrl(jobId));
   }
 }

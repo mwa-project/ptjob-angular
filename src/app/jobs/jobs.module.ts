@@ -37,7 +37,7 @@ export const jobRoutes = [
 
     , MatIconModule
     , MatDatepickerModule,
-    MatListModule
+    MatListModule,
 
   ],
   declarations: [PostJobsComponent, ReviewApplicationsComponent, JobRatingComponent, MyApplicationsComponent, ViewJobComponent]

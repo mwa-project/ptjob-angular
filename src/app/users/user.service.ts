@@ -1,4 +1,4 @@
-import { server } from './../../config';
+import { server } from './../config';
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -12,13 +12,9 @@ export class UserService {
   public signUpLink: string;
   public currentToken: string;
 
-<<<<<<< HEAD
 
   constructor(public http:HttpClient) { 
 
-=======
-  constructor(public http: HttpClient) { 
->>>>>>> 87741b2e56f28c97f01de11f828847e358ec01f3
     this.signUpLink  = this.getUrl("/users");
     this.currentToken = this.retrieveToken();
 
