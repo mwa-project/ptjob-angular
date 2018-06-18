@@ -40,6 +40,12 @@ export const jobRoutes = [
     MatListModule,
 
   ],
-  declarations: [PostJobsComponent, ReviewApplicationsComponent, JobRatingComponent, MyApplicationsComponent, ViewJobComponent]
+  declarations: [
+    PostJobsComponent, 
+    ReviewApplicationsComponent, 
+    JobRatingComponent, 
+    MyApplicationsComponent, 
+    ViewJobComponent
+  ]
 })
 export class JobsModule { }

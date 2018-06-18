@@ -26,5 +26,9 @@ export class MainMenuComponent {
     this.user = this.userService.getCurrentUser();
     // console.table(this.user);
   }
- 
+
+  onSignOut() {
+    console.log('onSignOut() clicked!');
   }
+  
+}

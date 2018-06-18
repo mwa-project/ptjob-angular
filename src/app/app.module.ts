@@ -1,5 +1,5 @@
 import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
-import { server } from './config';
+import { server } from '../config';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistrationComponent } from './users/registration/registration.component';
 import { HomeComponent } from './users/home/home.component';

@@ -1,4 +1,4 @@
-import { server } from './../config';
+import { server } from '../../config';
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
