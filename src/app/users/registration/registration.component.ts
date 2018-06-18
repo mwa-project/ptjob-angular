@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-registration',
@@ -19,7 +20,7 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  constructor(public fb:FormBuilder) {
+  constructor(public fb:FormBuilder, public userService:UserService) {
 
     this.signUpForm = fb.group({
       'firstName' : ['', Validators.required],
@@ -38,9 +39,22 @@ export class RegistrationComponent implements OnInit {
     });
 
     // this.signUpForm.statusChanges.subscribe( x => console.log(x));
-     this.signUpForm.valueChanges.subscribe( x => console.log(x));
+    //  this.signUpForm.valueChanges.subscribe( x => console.log(x));
      this.getPosition();
 
+   }
+
+   submitUser(){
+ 
+
+    this.userService.signUp(this.signUpForm.value).subscribe( x => {
+      console.log(x);
+    }, err => {
+      console.error(err)
+    }, () => {
+      
+    })
+        
    }
 
   ngOnInit() {

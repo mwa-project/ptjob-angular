@@ -21,7 +21,15 @@
         <mat-hint>last name</mat-hint>
       </mat-form-field>
     </p>
-
+    <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Email Address</mat-label>
+          <input matInput formControlName="email" placeholder="Placeholder">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>email</mat-hint>
+        </mat-form-field>
+      </p>
+      
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Date of Birth</mat-label>
@@ -45,14 +53,7 @@
     </p>
   </div>
   <div class="registration-form">
-    <p>
-      <mat-form-field appearance="standard">
-        <mat-label>Email Address</mat-label>
-        <input matInput formControlName="email" placeholder="Placeholder">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>email</mat-hint>
-      </mat-form-field>
-    </p>
+    
     <p>
       <mat-form-field appearance="standard">
         <mat-label>State</mat-label>
@@ -78,24 +79,26 @@
         <mat-hint>Zip Code</mat-hint>
       </mat-form-field>
     </p>
-  </div>
-  <div class="registration-form">
+    <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Longitude</mat-label>
+          <input matInput formControlName="longitude" placeholder="Placeholder">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Longitude</mat-hint>
+        </mat-form-field>
+      </p>
       <p>
           <mat-form-field appearance="standard">
-            <mat-label>Longitude</mat-label>
-            <input matInput formControlName="longitude" placeholder="Placeholder">
+            <mat-label>Latitude</mat-label>
+            <input matInput formControlName="latitude" placeholder="Placeholder">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-hint>Longitude</mat-hint>
+            <mat-hint>Latitude</mat-hint>
           </mat-form-field>
         </p>
-        <p>
-            <mat-form-field appearance="standard">
-              <mat-label>Latitude</mat-label>
-              <input matInput formControlName="latitude" placeholder="Placeholder">
-              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-              <mat-hint>Latitude</mat-hint>
-            </mat-form-field>
-          </p>
+
+  </div>
+  <div class="registration-form">
+      
     <p>
       <mat-form-field appearance="standard">
         <mat-label>User Name</mat-label>
@@ -125,7 +128,7 @@
     </p>
     <p>
       <button class="mybutton" type="button" mat-raised-button color="basic">Reset</button>
-      <button mat-raised-button [disabled]="!signUpForm.valid" color="primary">Submit</button>
+      <button mat-raised-button [disabled]="!signUpForm.valid" type="button" (click)= "submitUser()" color="primary">Submit</button>
     </p>
 
   </div>
