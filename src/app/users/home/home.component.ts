@@ -20,6 +20,7 @@ export class HomeComponent  {
   constructor(){
     this.getPosition();
   }
+  
   public getPosition() {
     navigator.geolocation.getCurrentPosition((position) => {
      this.latitude = position.coords.latitude;

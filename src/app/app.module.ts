@@ -1,3 +1,4 @@
+import { server } from './../config';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './users/registration/registration.component';
 import { HomeComponent } from './users/home/home.component';
@@ -7,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from "@agm/core";
 
+ 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainMenuComponent } from './main-menu/main-menu.component';
@@ -38,7 +40,7 @@ import { LoginComponent } from './users/login/login.component';
      MatOptionModule, MatSelectModule, MatInputModule,
      MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule,
      AgmCoreModule.forRoot({
-       apiKey : "AIzaSyDRhjv_y3Fu59dPmThFORAQR8HuHvbXrhs"
+       apiKey : server.apiKey
      })
 
   ],
