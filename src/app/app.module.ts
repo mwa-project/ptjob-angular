@@ -1,10 +1,11 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './users/registration/registration.component';
 import { HomeComponent } from './users/home/home.component';
 import { JobsModule } from './jobs/jobs.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AgmCoreModule } from "@agm/core";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,11 +14,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
+
 import { UserService } from './users/user.service';
-=======
+
 import { LoginComponent } from './users/login/login.component';
->>>>>>> 0b10f246121384c991074ed803db9cb6acd45711
+
 
 @NgModule({
   declarations: [
@@ -34,7 +35,11 @@ import { LoginComponent } from './users/login/login.component';
     MatIconModule,
     MatListModule, MatCardModule, MatFormFieldModule,
      MatOptionModule, MatSelectModule, MatInputModule,
-     MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule
+     MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule,
+     AgmCoreModule.forRoot({
+       apiKey : "AIzaSyDRhjv_y3Fu59dPmThFORAQR8HuHvbXrhs"
+     })
+
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

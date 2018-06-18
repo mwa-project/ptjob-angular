@@ -1,15 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
 
-  constructor() { }
+  public latitude;
+  public longitude;
+  public clickedLatitude;
+  public clickedLongitude;
+  public clicked:boolean;
 
-  ngOnInit() {
+
+  constructor(){
+    this.getPosition();
+  }
+  public getPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+     this.latitude = position.coords.latitude;
+     this.longitude = position.coords.longitude;
+    });
+  }
+
+  public onChooseLocation(event){
+     this.clickedLatitude = event.coords.lat;
+     this.clickedLongitude = event.coords.lng;
+     this.clicked = true;
+  }
+
+  openWindow(data){
+    this.clicked = true;
+    this.clickedLatitude = data.latitude;
+    this.clickedLongitude = data.longitude;
+
   }
 
 }
