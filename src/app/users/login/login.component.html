@@ -12,14 +12,13 @@
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password" placeholder="Enter your password" [type]="password">
+        <input matInput formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-
         <mat-hint>Password</mat-hint>
       </mat-form-field>
     </p>
     <p>
-      <button mat-raised-button [disabled]="!loginForm.valid" color="primary">Sign in</button>
+      <button mat-raised-button [disabled]="!loginForm.valid" color="primary" (click)="onSignIn()">Sign in</button>
     </p>
 
 
