@@ -29,7 +29,7 @@ export class UserService {
 
     return new Observable(observer => {
       const req = this.http.post(this.getUrl('/sessions'), {
-        user_name: userName,
+        userName: userName,
         password: password
       }).subscribe(res => {
         console.log(res);
