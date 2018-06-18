@@ -24,7 +24,7 @@ export const jobRoutes = [
     , ReactiveFormsModule
     , MatIconModule
     , MatDatepickerModule,
-    MatListModule
+    MatListModule,
 
   ],
   declarations: [PostJobsComponent, ViewJobsComponent, ReviewApplicationsComponent, JobRatingComponent, MyApplicationsComponent, ViewJobComponent]

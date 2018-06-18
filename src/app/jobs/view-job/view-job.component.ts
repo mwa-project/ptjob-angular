@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JobService } from '../../services/job.service';
 
@@ -9,14 +9,16 @@ import { JobService } from '../../services/job.service';
 })
 export class ViewJobComponent implements OnInit {
 
-  constructor(private jobService: JobService, private activatedRoute: ActivatedRoute) { }
   job: Object;
+  constructor(private jobService: JobService, private activatedRoute: ActivatedRoute) { }
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       const jobId = params['id'];
-      // const jobId = '5b27da26eab89f87b1897cc7';
-      this.job = this.jobService.getJobById(jobId);
-    });
+      this.jobService.getJobById(jobId).subscribe(res => {
+        this.job = res['data'];
+        console.log('got job:', this.job);
+      });
+    }); 
   }
-
 }
