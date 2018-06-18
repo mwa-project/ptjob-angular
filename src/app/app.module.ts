@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './users/user.service';
 
 import { LoginComponent } from './users/login/login.component';
+import { JobsService } from './jobs/jobs.service';
 
 
 
@@ -44,7 +45,7 @@ import { LoginComponent } from './users/login/login.component';
      })
 
   ],
-  providers: [UserService],
+  providers: [UserService, JobsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
