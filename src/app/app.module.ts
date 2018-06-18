@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './users/registration/registration.component';
 import { HomeComponent } from './users/home/home.component';
 import { JobsModule } from './jobs/jobs.module';
@@ -12,6 +13,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './users/user.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatListModule, MatCardModule, MatFormFieldModule,
      MatOptionModule, MatSelectModule, MatInputModule,
-     MatRadioModule, MatDatepickerModule, MatNativeDateModule
+     MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
