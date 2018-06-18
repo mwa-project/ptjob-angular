@@ -1,3 +1,4 @@
+import { JobsService } from './../../jobs/jobs.service';
 
 import { Component } from '@angular/core';
 
@@ -15,12 +16,16 @@ export class HomeComponent  {
   public clickedLatitude;
   public clickedLongitude;
   public clicked:boolean;
+  public jobs;
 
 
-  constructor(){
+  constructor(public jobsService: JobsService){
     this.getPosition();
-  }
-  
+    jobsService.getJobs().subscribe( x => {
+      this.jobs = x;
+    })
+    }
+
   public getPosition() {
     navigator.geolocation.getCurrentPosition((position) => {
      this.latitude = position.coords.latitude;

@@ -13,8 +13,9 @@ export class UserService {
   public currentToken: string;
 
   constructor(public http: HttpClient) { 
-    this.signUpLink  = server.host + ":" + server.port + "/users"
+    this.signUpLink  = this.getUrl("/users");
     this.currentToken = this.retrieveToken();
+
   }
 
   public signUp(user){
