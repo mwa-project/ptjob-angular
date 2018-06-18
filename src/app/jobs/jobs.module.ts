@@ -7,13 +7,22 @@ import { ReviewApplicationsComponent } from './review-applications/review-applic
 import { JobRatingComponent } from './job-rating/job-rating.component';
 import { MyApplicationsComponent } from './my-applications/my-applications.component';
 import { ViewJobComponent } from './view-job/view-job.component';
-import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule } from '@angular/material';
+
+import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatSortModule, MatSelectModule, MatTableModule, MatNativeDateModule, MatListModule } from '@angular/material';
+
+//import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule } from '@angular/material';
+
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 export const jobRoutes = [
   { path: "rate-job", component: JobRatingComponent },
+
+  { path: "review-applications", component: ReviewApplicationsComponent},
+  { path: "view-jobs", component: ViewJobsComponent},
+
   { path: "review-applications", component: ReviewApplicationsComponent }
+
 ]
 
 @NgModule({
@@ -22,11 +31,15 @@ export const jobRoutes = [
     , MatFormFieldModule
     , MatInputModule
     , ReactiveFormsModule
+
+    , MatIconModule,MatDatepickerModule, MatNativeDateModule  , MatTableModule
+   
+
     , MatIconModule
     , MatDatepickerModule,
     MatListModule,
 
   ],
-  declarations: [PostJobsComponent, ViewJobsComponent, ReviewApplicationsComponent, JobRatingComponent, MyApplicationsComponent, ViewJobComponent]
+  declarations: [PostJobsComponent, ReviewApplicationsComponent, JobRatingComponent, MyApplicationsComponent, ViewJobComponent]
 })
 export class JobsModule { }

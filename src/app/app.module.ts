@@ -1,3 +1,4 @@
+import { ViewJobsComponent } from './jobs/view-jobs/view-jobs.component';
 import { server } from './../config';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistrationComponent } from './users/registration/registration.component';
@@ -52,7 +53,7 @@ import { TokenInterceptor } from './services/token.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }],
+    }, ViewJobsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

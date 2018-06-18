@@ -1,14 +1,51 @@
 <div class="container">
-<agm-map [latitude] = "latitude" [longitude] = "longitude" (mapClick) = "onChooseLocation($event)">
-<agm-marker [latitude] = "latitude" [longitude] = "longitude">
-</agm-marker>
-<agm-marker (markerClick)="openWindow({latitude: latitude, longitude:longitude})"  label= "Mrisho Msabaha" [latitude] = "40.72321884127729" [longitude] = "-92.54688858032318">
-
+<agm-map *ngIf="showMap"  [latitude] = "latitude" [longitude] = "longitude" (mapClick) = "onChooseLocation($event)" >
+<!-- <agm-marker [latitude] = "latitude" [longitude] = "longitude">
+</agm-marker> (mapClick) = "onChooseLocation($event)"-->
+<agm-marker *ngFor = "let job of jobs"  (markerClick)="openWindow(job)" 
+ [latitude] = "job.location.coordinates[1]" [longitude] = "job.location.coordinates[0]">
 </agm-marker>
 </agm-map>
-
-<div *ngIf = "clicked">
-    {{clickedLatitude}}, {{clickedLongitude}}
+<div class="container" >
+<mat-card *ngIf="clicked" class="example-card">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <div class="columns">
+      <mat-card-title> Title: {{ selectedJob.category }} </mat-card-title>
+      <mat-card-title> State : {{ selectedJob.location.state }} </mat-card-title>
+      <mat-card-title> City : {{ selectedJob.location.city }} </mat-card-title>
+      <mat-card-title> <span class="field">Employer: </span> {{ selectedJob.created_by.full_name }} </mat-card-title>
+    </div>
+    <div class="columns">
+    
+    <mat-card-title> <span class="field">Date Posted</span> {{ selectedJob.created_at }} </mat-card-title>
+    <mat-card-title>  <span class="field"> Duration From: </span>  {{ selectedJob.period.start_end }} <span class="field">to: </span> 
+        {{ selectedJob.period.end_date}} </mat-card-title>
+    <mat-card-title> <span class="field">Salary between : </span> {{ selectedJob.salary_range.to  }} 
+        <span class="field">to: </span>
+    </mat-card-title>
+    
+  </div>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+        <h1>Description</h1>
+      <p>
+            {{ selectedJob.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Apply</button>
+      <button mat-button (click) = "closeJobWindow()">Close Job</button>
+      <button mat-button (click) = "toggleMap()">ToggleMap</button>
+    </mat-card-actions>
+  </mat-card> 
 </div> 
+<router-outlet>
+
+    </router-outlet>
+<!-- <app-view-jobs>
+    
+</app-view-jobs> -->
 </div>
 

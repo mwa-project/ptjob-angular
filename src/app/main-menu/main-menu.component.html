@@ -8,17 +8,33 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar color="primary">
      
-        <div class="example-header-image"></div> <div id="logged_in_user" *ngIf="user">{{ user.user_name }}</div>
+        <div *ngIf="user" class="example-header-image"></div> <div id="logged_in_user" *ngIf="user">{{ user.user_name }}</div>
     </mat-toolbar>
     <mat-nav-list>
+
+      <a  mat-list-item [routerLink] ="['']">Home</a>
+      <a *ngIf="!user" mat-list-item [routerLink] = "['sign-up']">Sign up</a>
+      <a *ngIf="!user" mat-list-item [routerLink] = "['login']">Login</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['sign-up']">Search Jobs</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['post-job']">Post a Job</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs']">Job List</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['sign-up']">View My Posts</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['sign-up']">My Applications</a>
+<!-- 
       <a mat-list-item [routerLink] ="['']">Home</a>
       <a mat-list-item [routerLink] = "['sign-up']">Sign up</a>
       <a mat-list-item [routerLink] = "['login']">Login</a>
       <a mat-list-item [routerLink] = "['sign-up']">Search Jobs</a>
       <a mat-list-item [routerLink] = "['view-jobs']">Job List</a>
       <a mat-list-item [routerLink] = "['post-job']">Post a Job</a>
+<<<<<<< HEAD
       <a mat-list-item [routerLink] = "['view-jobs', user._id]">View My Posts</a>
       <a mat-list-item [routerLink] = "['sign-up']">My Applications</a>
+=======
+      <a mat-list-item [routerLink] = "['sign-up']">View My Posts</a>
+      <a mat-list-item [routerLink] = "['sign-up']">My Applications</a> -->
+
+>>>>>>> 3267560c340605a1fb2a5f0b99cf1fda05b8b1ad
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

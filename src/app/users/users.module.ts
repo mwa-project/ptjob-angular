@@ -1,3 +1,6 @@
+import { JobsModule } from './../jobs/jobs.module';
+import { MatTableModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { ViewJobsComponent } from './../jobs/view-jobs/view-jobs.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,8 +16,8 @@ export const userRoutes = [
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule.forChild(userRoutes)
+    CommonModule, RouterModule.forChild(userRoutes),MatDatepickerModule, MatNativeDateModule,MatTableModule, JobsModule
   ],
-  declarations: [ UserDetailsComponent]
+  declarations: [ UserDetailsComponent, ViewJobsComponent]
 })
 export class UsersModule { }

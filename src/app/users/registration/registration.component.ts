@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -20,7 +21,7 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  constructor(public fb:FormBuilder, public userService:UserService) {
+  constructor(public fb:FormBuilder, public userService:UserService, public router: Router) {
 
     this.signUpForm = fb.group({
       'firstName' : ['', Validators.required],
@@ -49,6 +50,8 @@ export class RegistrationComponent implements OnInit {
 
     this.userService.signUp(this.signUpForm.value).subscribe( x => {
       console.log(x);
+      this.router.navigate(['login']);
+      
     }, err => {
       console.error(err)
     }, () => {

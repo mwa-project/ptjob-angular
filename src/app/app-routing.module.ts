@@ -14,7 +14,7 @@ import { jobRoutes } from './jobs/jobs.module';
 
 const routes: Routes = [
 //  { path: "", component: HomeComponent,  loadChildren: './users/users.module#UsersModule' },
-{ path: "", component: HomeComponent },
+{ path: "", component: HomeComponent, children: jobRoutes },
  { path: "my-applications", component: MyApplicationsComponent},
  { path: "view-job/:id", component: ViewJobComponent, children: jobRoutes },
  { path: "view-jobs", component: ViewJobsComponent, children: jobRoutes },
