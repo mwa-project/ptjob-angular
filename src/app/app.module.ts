@@ -12,11 +12,12 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './users/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainMenuComponent, HomeComponent, RegistrationComponent
+    MainMenuComponent, HomeComponent, RegistrationComponent, LoginComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,

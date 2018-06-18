@@ -18,7 +18,8 @@ const routes: Routes = [
  { path: "view-job/:id", component: ViewJobComponent, loadChildren: './jobs/jobs.module#JobsModule' },
  { path: "view-jobs", component: ViewJobsComponent},
  { path: "post-job", component: PostJobsComponent},
- { path: "sign-up", component: RegistrationComponent}
+ { path: "sign-up", component: RegistrationComponent},
+ { path: "login", component: LoginComponent}
 ];
 
 @NgModule({

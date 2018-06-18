@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<form [formGroup]="loginForm">
+  <div class="login-form">
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>User Name</mat-label>
+        <input matInput formControlName="userName" placeholder="Enter your user name">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>user name</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" placeholder="Enter your password" [type]="password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+
+        <mat-hint>Password</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <button mat-raised-button [disabled]="!loginForm.valid" color="primary">Sign in</button>
+    </p>
+
+
+  </div>
+</form>
