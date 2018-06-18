@@ -7,6 +7,8 @@ import { ReviewApplicationsComponent } from './review-applications/review-applic
 import { JobRatingComponent } from './job-rating/job-rating.component';
 import { MyApplicationsComponent } from './my-applications/my-applications.component';
 import { ViewJobComponent } from './view-job/view-job.component';
+import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule } from '@angular/material';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 export const jobRoutes = [
@@ -17,6 +19,12 @@ export const jobRoutes = [
 @NgModule({
   imports: [
     CommonModule, RouterModule.forChild(jobRoutes)
+    , MatFormFieldModule
+    , MatInputModule
+    , ReactiveFormsModule
+    , MatIconModule
+    
+    
   ],
   declarations: [PostJobsComponent, ViewJobsComponent, ReviewApplicationsComponent, JobRatingComponent, MyApplicationsComponent, ViewJobComponent]
 })
