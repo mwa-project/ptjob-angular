@@ -13,11 +13,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
 import { UserService } from './users/user.service';
-=======
 import { LoginComponent } from './users/login/login.component';
->>>>>>> 0b10f246121384c991074ed803db9cb6acd45711
 
 @NgModule({
   declarations: [
