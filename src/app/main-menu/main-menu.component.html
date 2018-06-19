@@ -13,6 +13,7 @@
     <mat-nav-list>
 
       <a  mat-list-item [routerLink] ="['']">Home</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['profile']">Profile</a>
       <a *ngIf="!user" mat-list-item [routerLink] = "['sign-up']">Sign up</a>
       <a *ngIf="!user" mat-list-item [routerLink] = "['login']">Login</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['sign-up']">Search Jobs</a>

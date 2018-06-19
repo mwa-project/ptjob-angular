@@ -1,3 +1,203 @@
-<p>
+<!-- <p>
   user-details works!
-</p>
+</p> -->
+<div class= "headerInfo" style="font-weight:bold"><h1>{{userData.first_name}}   {{userData.last_name}}</h1> </div>
+<div> <br> </div>
+<div class="headerInfo">E-mail: {{userData.email}} </div>
+<div class="headerInfo">Date of Birth: {{userData.date_of_birth}} | {{userData.gender}} </div>
+<div class="headerInfo">Address: {{userData.location.state}}, {{userData.location.city}} , {{userData.location.zipcode}}, [{{userData.location.coordinates[0]}}, {{userData.location.coordinates[1]}}] </div>
+
+<form [formGroup]="myForm">
+  <!-- <mat-card class="example-card">
+    <mat-card-content> -->
+    
+    <div class="myform">
+      <div formArrayName="experiences">      
+        <mat-label><h3>Experiences</h3></mat-label>  
+        <button type="button" class="btn btn-default" (click)="onAddExperience()">Add Experience</button>
+        <div *ngFor="let req of myForm.get('experiences').controls; let i = index">
+          <div [formGroupName]="i">
+              <mat-form-field>
+                <input  matInput placeholder="Company name" formControlName="company_name">                  
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Month start" formControlName="from_month">
+                  <mat-option *ngFor="let m of months" [value]="m.value" >{{m.text}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Year start" formControlName="from_year">
+                  <mat-option *ngFor="let m of years" [value]="m" >{{m}}</mat-option>
+                </mat-select>                 
+              </mat-form-field>
+              <!-- <mat-form-field>
+                  <input  matInput placeholder="From month" formControlName="from_month">                  
+              </mat-form-field> -->
+              <!-- <mat-form-field>
+                  <input  matInput placeholder="Year start" formControlName="from_year">                  
+              </mat-form-field> -->
+              <mat-form-field>
+                <mat-select placeholder="Month end" formControlName="to_month">
+                  <mat-option *ngFor="let m of months" [value]="m.value" >{{m.text}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Year end" formControlName="to_year">
+                  <mat-option *ngFor="let m of years" [value]="m" >{{m}}</mat-option>
+                </mat-select>                 
+              </mat-form-field>
+              <mat-form-field>
+                  <input  matInput placeholder="Company address" formControlName="company_address">                  
+              </mat-form-field>
+              <mat-form-field>
+                  <input  matInput placeholder="Description" formControlName="description">                  
+              </mat-form-field>
+              <button type="button" class="btn btn-default" (click)="onRemoveExperience(i)">Remove Experience</button>
+          </div>          
+        </div>        
+    </div>
+  
+    <div formArrayName="educations">      
+        <mat-label><h3>Educations</h3></mat-label>  
+        <button type="button" class="btn btn-default" (click)="onAddEducation()">Add Aducation</button>
+        <div *ngFor="let req of myForm.get('educations').controls; let i = index">
+          <div [formGroupName]="i">
+              <mat-form-field>
+                  <input  matInput placeholder="School name" formControlName="school_name">                  
+              </mat-form-field>
+              <mat-form-field>
+                  <input  matInput placeholder="Degree" formControlName="degree">                  
+              </mat-form-field>
+              <mat-form-field>
+                  <input  matInput placeholder="Field study" formControlName="field_study">                  
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Year start" formControlName="start_year">
+                  <mat-option *ngFor="let y of years" [value]="y" >{{y}}</mat-option>
+                </mat-select>                 
+              </mat-form-field>              
+              <mat-form-field>
+                <mat-select placeholder="Year end" formControlName="end_year">
+                  <mat-option *ngFor="let y of years" [value]="y" >{{y}}</mat-option>
+                </mat-select>                 
+              </mat-form-field>
+              
+              <!-- <mat-form-field>
+                  <input  matInput placeholder="Year start" formControlName="start_year">                  
+              </mat-form-field>
+              <mat-form-field>
+                  <input  matInput placeholder="Year end" formControlName="end_year">                  
+              </mat-form-field> -->
+              <mat-form-field>
+                  <input  matInput placeholder="Description" formControlName="description">                  
+              </mat-form-field>
+              <button type="button" class="btn btn-default" (click)="onRemoveEducation(i)">Remove Education</button>
+          </div>          
+        </div>        
+    </div>
+      <p>
+       
+        <button mat-raised-button [disabled]="!myForm.valid" type="button" (click)= "updateProfile()" color="primary">Save</button>
+      </p>
+  
+  </div>
+    <!-- </mat-card-content></mat-card> -->
+  </form>
+  <!-- </div> -->
+
+
+  <!-- <div class="myform"> -->
+      <!-- <p>
+        <mat-form-field appearance="standard">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="first_name" placeholder="Placeholder" [value]="userData.first_name">
+          <mat-error *ngIf="!myForm.controls['first_name'].valid">first name is required</mat-error>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>first name</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="last_name" placeholder="Placeholder" [value]="userData.last_name">
+          <mat-error *ngIf="!myForm.controls['last_name'].valid">first name is required</mat-error>
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>last name</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="email" placeholder="Placeholder" [value]="userData.email">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>email</mat-hint>
+          </mat-form-field>
+        </p>
+        
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput formControlName="date_of_birth" [matDatepicker]="picker" placeholder="Choose a date" [value]="userData.date_of_birth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="!myForm.controls['date_of_birth'].valid">date of birth is required</mat-error>
+          <mat-hint>date of birth</mat-hint>
+        </mat-form-field>
+      </p>
+      <p class="mat-radio-button">
+          
+        <mat-radio-group  appearance="standard"  formControlName="gender" [value]="userData.gender">
+            <div class="mybutton"><mat-label>Gender</mat-label></div>
+            <span class="mybutton"><mat-radio-button value="M" selected="true">Male </mat-radio-button></span>
+            <span class="mybutton"><mat-radio-button value="F">Female </mat-radio-button></span>
+          
+      
+        </mat-radio-group>
+  
+      </p>
+    </div>
+    <div class="myform">
+      
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>State</mat-label>
+          <input matInput formControlName="state" placeholder="Placeholder" [value]="userData.location.state">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>state</mat-hint>
+        </mat-form-field>
+      </p>
+  
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" placeholder="Placeholder" [value]="userData.location.city">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>city</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Zip Code</mat-label>
+          <input matInput formControlName="zipcode" placeholder="Placeholder" [value]="userData.location.zipcode">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Zip Code</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="standard">
+            <mat-label>Longitude</mat-label>
+            <input matInput formControlName="longitude" placeholder="Placeholder" [value]="userData.location.coordinates[0]">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Longitude</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Latitude</mat-label>
+              <input matInput formControlName="latitude" placeholder="Placeholder" [value]="userData.location.coordinates[1]">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              <mat-hint>Latitude</mat-hint>
+            </mat-form-field>
+          </p> -->
+  
+    <!-- </div> -->
