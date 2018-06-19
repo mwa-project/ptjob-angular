@@ -11,6 +11,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ViewJobComponent } from './jobs/view-job/view-job.component';
 import { jobRoutes } from './jobs/jobs.module';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { ViewCompletedJobsComponent } from './jobs/view-completed-jobs/view-completed-jobs.component';
+import { MySuccessfulJobappsComponent } from './jobs/my-successful-jobapps/my-successful-jobapps.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
  { path: "post-job", component: PostJobsComponent},
  { path: "sign-up", component: RegistrationComponent},
  { path: "login", component: LoginComponent}, 
- { path: "profile", component: UserDetailsComponent }
+ { path: "profile", component: UserDetailsComponent },
+ { path: "view-completed-job-posts", component: ViewCompletedJobsComponent },
+ { path: "view-successful-job-apps", component: MySuccessfulJobappsComponent }
 ];
 
 @NgModule({

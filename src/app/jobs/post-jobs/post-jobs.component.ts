@@ -9,6 +9,7 @@ import {FormControl
 import {ErrorStateMatcher} from '@angular/material/core';
 import { PtjobService } from '../ptjob.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../users/user.service';
 
 
 @Component({
@@ -18,8 +19,13 @@ import { Router } from '@angular/router';
 })
 export class PostJobsComponent implements OnInit {
   myForm: FormGroup
-  constructor(private formBuilder: FormBuilder, private ptJobService: PtjobService, private router: Router) {
+  userData;
+  constructor(private formBuilder: FormBuilder, public userService:UserService, private ptJobService: PtjobService, private router: Router) {
+    this.userData = this.userService.getCurrentUser();
     this.myForm = formBuilder.group({
+      'created_by_user_id': this.userData._id,
+      'created_by_full_name': this.userData.first_name+" "+this.userData.last_name,
+      'status': 'open',
       'category': ['', [Validators.required]],
       'description': ['', [Validators.required]],
       'state' : ['', Validators.required],

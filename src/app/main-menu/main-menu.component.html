@@ -21,6 +21,8 @@
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs']">Job List</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs', user._id]">View My Posts</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['my-applications']">My Applications</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['view-completed-job-posts']">My Completed Posts</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['view-successful-job-apps']">My Successful Apps</a>
       <a *ngIf="user" mat-list-item (click)="onSignOut()">Sign out</a>
 
     </mat-nav-list>
