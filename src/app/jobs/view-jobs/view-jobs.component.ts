@@ -6,6 +6,7 @@ import { JobService } from '../../services/job.service';
 import { IAppState } from '../../app.store';
 import { NgRedux } from '@angular-redux/store';
 import { ApplicationAction, ManagementApplicationActions } from '../../app.actions';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ViewJobsComponent implements OnInit {
   showManagement: boolean = false;
   //jobs: Array<Object>;
   constructor(private jobService: JobService, 
-    private ngRedux: NgRedux<IAppState>, private actions: ManagementApplicationActions) {
+    private ngRedux: NgRedux<IAppState>, private actions: ManagementApplicationActions,  private activatedRoute: ActivatedRoute) {
 
     this.jobService.getJobs().subscribe(list => {
       this.dataSource = list;
@@ -31,7 +32,16 @@ export class ViewJobsComponent implements OnInit {
    }
 
 
-  ngOnInit() {
+   ngOnInit() {
+     this.activatedRoute.params.subscribe(params => {
+       let userId = params['userId'];
+       if (userId) {
+        console.log('show job list by user ID: ' + params['userId']);
+       } else {
+         console.log('show the full job list');
+       }
+       
+     });
     // this.jobService.getJobs().subscribe(list => {
     //   this.jobs = list;
     // });

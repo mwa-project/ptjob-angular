@@ -19,7 +19,7 @@ const routes: Routes = [
 { path: "applications/:jobId", component: MyApplicationsComponent},
 { path: "view-job/:id", component: ViewJobComponent, children: jobRoutes },
  { path: "view-jobs", component: ViewJobsComponent, children: jobRoutes },
- { path: "view-jobs/:id", component: ViewJobsComponent, children: jobRoutes },
+ { path: "view-jobs/:userId", component: ViewJobsComponent, children: jobRoutes },
  { path: "post-job", component: PostJobsComponent},
  { path: "sign-up", component: RegistrationComponent},
  { path: "login", component: LoginComponent}
