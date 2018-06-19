@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { JobService } from '../../services/job.service';
+import { IAppState } from '../../app.store';
+import { NgRedux } from '@angular-redux/store';
+import { ApplicationAction, ManagementApplicationActions } from '../../app.actions';
 
 
 @Component({
@@ -19,7 +22,8 @@ export class ViewJobsComponent implements OnInit {
   // constructor() { }
   showManagement: boolean = false;
   //jobs: Array<Object>;
-  constructor(private jobService: JobService) {
+  constructor(private jobService: JobService, 
+    private ngRedux: NgRedux<IAppState>, private actions: ManagementApplicationActions) {
 
     this.jobService.getJobs().subscribe(list => {
       this.dataSource = list;
@@ -36,8 +40,10 @@ export class ViewJobsComponent implements OnInit {
 
   onManageJobClicked(job: Object) {
     console.log('onManageJobClicked()')
-    console.log(job)
-    this.showManagement  = !this.showManagement;
+  
+    this.ngRedux.dispatch(this.actions.manage({ _id: 'hello id', title: 'hello title'}));
+    // console.log(job)
+    // this.showManagement  = !this.showManagement;
   }
 }
 

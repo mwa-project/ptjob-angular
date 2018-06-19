@@ -24,6 +24,7 @@ import { LoginComponent } from './users/login/login.component';
 import { JobsService } from './jobs/jobs.service';
 import { TokenInterceptor } from './services/token.interceptor';
 import { NgReduxModule, NgRedux } from '@angular-redux/store'; 
+import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
 
 
 @NgModule({
@@ -58,4 +59,10 @@ import { NgReduxModule, NgRedux } from '@angular-redux/store';
     }, ViewJobsComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(
+      rootReducer,
+      INITIAL_STATE);
+  }
+ }
