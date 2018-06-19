@@ -8,7 +8,11 @@ import { JobRatingComponent } from './job-rating/job-rating.component';
 import { MyApplicationsComponent } from './my-applications/my-applications.component';
 import { ViewJobComponent } from './view-job/view-job.component';
 
-import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatSortModule, MatSelectModule, MatTableModule, MatNativeDateModule, MatListModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule,
+   MatInput, MatIconModule, MatDatepickerModule, 
+   MatSortModule, MatSelectModule, MatTableModule, 
+   MatNativeDateModule, MatListModule } from '@angular/material';
+   import {MatStepperModule} from '@angular/material/stepper';
 
 //import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule } from '@angular/material';
 
@@ -27,18 +31,19 @@ export const jobRoutes = [
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule.forChild(jobRoutes)
-    , MatFormFieldModule
-    , MatInputModule
-    , ReactiveFormsModule
-
-    , MatIconModule,MatDatepickerModule, MatNativeDateModule  , MatTableModule
-   
-
-    , MatIconModule
-    , MatDatepickerModule,
+    CommonModule, 
+    RouterModule.forChild(jobRoutes),
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatDatepickerModule, 
+    MatNativeDateModule, 
+    MatTableModule, 
+    MatStepperModule,
+    MatIconModule,
+    MatDatepickerModule,
     MatListModule,
-
   ],
   declarations: [
     PostJobsComponent, 

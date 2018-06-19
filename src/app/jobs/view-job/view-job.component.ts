@@ -15,6 +15,7 @@ export class ViewJobComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       const jobId = params['id'];
+      console.log(jobId);
       this.jobService.getJobById(jobId).subscribe(res => {
         this.job = res['data'];
         console.log('got job:', this.job);
