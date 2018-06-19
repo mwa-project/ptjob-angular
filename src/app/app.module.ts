@@ -23,6 +23,7 @@ import { UserService } from './users/user.service';
 import { LoginComponent } from './users/login/login.component';
 import { JobsService } from './jobs/jobs.service';
 import { TokenInterceptor } from './services/token.interceptor';
+import { NgReduxModule, NgRedux } from '@angular-redux/store'; 
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { TokenInterceptor } from './services/token.interceptor';
      MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule,
      AgmCoreModule.forRoot({
        apiKey : server.apiKey
-     })
+     }),
+     NgReduxModule
 
   ],
   providers: [
