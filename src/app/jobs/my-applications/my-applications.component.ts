@@ -25,7 +25,7 @@ export class MyApplicationsComponent implements OnInit {
           console.log(this.apps);
         });
       } else {
-        console.log('get applications by token (my applications)');
+        console.log('get applications by current user');
         this.appliationService.getMyApplications(apps => {
           this.apps = apps;
           console.log(this.apps);

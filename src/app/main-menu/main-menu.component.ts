@@ -24,7 +24,7 @@ export class MainMenuComponent {
 
   ngAfterContentChecked() {
     this.user = this.userService.getCurrentUser();
-    console.log(this.user);
+    // console.log(this.user);
   }
 
   onSignOut() {
