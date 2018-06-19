@@ -29,12 +29,15 @@ export class UserService {
   }
   
   public login(userName: string, password: string): Observable<{ err: Error, user: Object }> {
-
+    console.log('userName: ' + userName);
+    console.log('password: ' + password);
+    console.log(this.getUrl('/sessions'))
     return new Observable(observer => {
       const req = this.http.post(this.getUrl('/sessions'), {
         userName: userName,
         password: password
       }).subscribe(res => {
+        console.log('res:')
         console.log(res);
         if (res.hasOwnProperty('token')) {
           this.storeToken(res['token']);
@@ -65,7 +68,6 @@ export class UserService {
   private retrieveToken() {
     let storedToken: string = "";
     storedToken = localStorage.getItem(this.tokenKey);
-    // console.log('got token: ' + storedToken);
     return storedToken;
   }
 
@@ -76,5 +78,9 @@ export class UserService {
     let user = JSON.parse(localStorage.getItem(this.userKey));
     // console.log('got user: ' + user);
     return user;
+  }
+
+  public signOut(): void {
+    localStorage.clear();
   }
 }

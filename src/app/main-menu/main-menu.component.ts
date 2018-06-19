@@ -29,6 +29,7 @@ export class MainMenuComponent {
 
   onSignOut() {
     console.log('onSignOut() clicked!');
+    this.userService.signOut();
   }
   
 }
