@@ -25,12 +25,13 @@ import { JobsService } from './jobs/jobs.service';
 import { TokenInterceptor } from './services/token.interceptor';
 import { NgReduxModule, NgRedux } from '@angular-redux/store'; 
 import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
+// import { ManageJobComponent } from './jobs/manage-job.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainMenuComponent, HomeComponent, RegistrationComponent, LoginComponent
+    MainMenuComponent, HomeComponent, RegistrationComponent, LoginComponent//, ManageJobComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,

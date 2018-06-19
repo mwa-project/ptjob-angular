@@ -11,12 +11,13 @@ import { ViewJobComponent } from './view-job/view-job.component';
 import { MatFormFieldModule, MatInputModule,
    MatInput, MatIconModule, MatDatepickerModule, 
    MatSortModule, MatSelectModule, MatTableModule, 
-   MatNativeDateModule, MatListModule } from '@angular/material';
+   MatNativeDateModule, MatListModule, MatDialog, MatDialogModule, MatButtonModule } from '@angular/material';
    import {MatStepperModule} from '@angular/material/stepper';
 
 //import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule } from '@angular/material';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ManageJobComponent } from './manage-job.component';
 
 
 export const jobRoutes = [
@@ -44,13 +45,22 @@ export const jobRoutes = [
     MatIconModule,
     MatDatepickerModule,
     MatListModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   declarations: [
     PostJobsComponent, 
     ReviewApplicationsComponent, 
     JobRatingComponent, 
     MyApplicationsComponent, 
-    ViewJobComponent
+    ViewJobComponent,
+    ManageJobComponent
+  ],
+  exports: [
+    // ManageJobComponent
+  ],
+  entryComponents: [
+    ManageJobComponent
   ]
 })
 export class JobsModule { }

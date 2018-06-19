@@ -7,6 +7,8 @@ import { IAppState } from '../../app.store';
 import { NgRedux } from '@angular-redux/store';
 import { ApplicationAction, ManagementApplicationActions } from '../../app.actions';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ManageJobComponent } from '../manage-job.component';
 
 
 @Component({
@@ -21,10 +23,13 @@ export class ViewJobsComponent implements OnInit {
   dataSource ;
   
   // constructor() { }
-  showManagement: boolean = false;
+  // showManagement: boolean = false;
   //jobs: Array<Object>;
   constructor(private jobService: JobService, 
-    private ngRedux: NgRedux<IAppState>, private actions: ManagementApplicationActions,  private activatedRoute: ActivatedRoute) {
+    private ngRedux: NgRedux<IAppState>, 
+    private actions: ManagementApplicationActions,  
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog) {
 
     this.jobService.getJobs().subscribe(list => {
       this.dataSource = list;
@@ -50,8 +55,11 @@ export class ViewJobsComponent implements OnInit {
 
   onManageJobClicked(job: Object) {
     console.log('onManageJobClicked()')
-  
-    this.ngRedux.dispatch(this.actions.manage({ _id: 'hello id', title: 'hello title'}));
+    let dialogRef = this.dialog.open(ManageJobComponent, {
+      height: '400px',
+      width: '600px',
+    });
+    // this.ngRedux.dispatch(this.actions.manage({ _id: 'hello id', title: 'hello title'}));
     // console.log(job)
     // this.showManagement  = !this.showManagement;
   }
