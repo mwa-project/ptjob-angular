@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//copast
-//import {Component} from '@angular/core';
 import {FormControl
   , FormGroupDirective
   , NgForm
@@ -9,17 +7,10 @@ import {FormControl
   , FormBuilder
 , FormArray} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-//end copast
+import { PtjobService } from '../ptjob.service';
+import { Router } from '@angular/router';
 
-// copast
-/** Error when invalid control is dirty, touched, or submitted. */
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-//     const isSubmitted = form && form.submitted;
-//     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-//   }
-// }
-//end copast
+
 @Component({
   selector: 'app-post-jobs',
   templateUrl: './post-jobs.component.html',
@@ -27,7 +18,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 })
 export class PostJobsComponent implements OnInit {
   myForm: FormGroup
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private ptJobService: PtjobService, private router: Router) {
     this.myForm = formBuilder.group({
       'category': ['', [Validators.required]],
       'description': ['', [Validators.required]],
@@ -36,10 +27,9 @@ export class PostJobsComponent implements OnInit {
       'zipcode' : ['', Validators.required],
       'longitude' : ['', Validators.required],
       'latitude' : ['', Validators.required],
-     // , 'requirements': ['', [Validators.required]]
-      // ,'requirements': formBuilder.array([
-      //   ['Req1', Validators.required]
-      // ])
+      'requirements': formBuilder.array([
+        ['', Validators.required]
+      ]),
       'period_start_date': ['', [Validators.required]],
       'period_end_date': ['', [Validators.required]] ,
       'salary_range_from': ['', [Validators.required]],
@@ -57,23 +47,25 @@ export class PostJobsComponent implements OnInit {
   }
 
   onAddRequirement() {
-    (<FormArray>this.myForm.controls['requirements']).push(new FormControl('', Validators.required));
+    console.log('click add req');
+    (<FormArray>this.myForm.get('requirements')).push(new FormControl('', Validators.required));
+  } 
+
+  onRemoveRequirement(index){
+    console.log('index: '+index);
   }
 
   onSubmit() {
-    console.log(this.myForm);
+    console.log(this.myForm.value);
+    this.ptJobService.saveNewJobPost(this.myForm.value)
+    .subscribe(res => {
+      console.log(res); 
+      this.router.navigate(['/', 'view-jobs']);
+    }
+    , err => {console.log(err); } );
   }
 
   ngOnInit() {
   }
-
-  //copast
-  // emailFormControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.email,
-  // ]);
-
-  // matcher = new MyErrorStateMatcher();
-  //end copast
 
 }

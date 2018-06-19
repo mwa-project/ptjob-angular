@@ -23,6 +23,13 @@ export class UserService {
   public signUp(user){
     return this.http.post(this.signUpLink, user);
   }
+  public updateResume(data){
+    console.log(data);
+    let updateResumeLink = server.host + ":" + server.port + "/users";
+    //return 
+    this.http.put(updateResumeLink, data);
+    console.log('FINISH PUT');
+  }
 
   getUrl(router: string): string {
     return server.host + ":" + server.port + router;

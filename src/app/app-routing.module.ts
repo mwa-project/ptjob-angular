@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ViewJobComponent } from './jobs/view-job/view-job.component';
 import { jobRoutes } from './jobs/jobs.module';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
  { path: "view-jobs/:userId", component: ViewJobsComponent, children: jobRoutes },
  { path: "post-job", component: PostJobsComponent},
  { path: "sign-up", component: RegistrationComponent},
- { path: "login", component: LoginComponent}
+ { path: "login", component: LoginComponent}, 
+ { path: "profile", component: UserDetailsComponent }
 ];
 
 @NgModule({
