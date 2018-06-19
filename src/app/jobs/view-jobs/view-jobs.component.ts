@@ -17,7 +17,7 @@ export class ViewJobsComponent implements OnInit {
   dataSource ;
   
   // constructor() { }
-
+  showManagement: boolean = false;
   //jobs: Array<Object>;
   constructor(private jobService: JobService) {
 
@@ -33,6 +33,12 @@ export class ViewJobsComponent implements OnInit {
     // });
   }
 
+
+  onManageJobClicked(job: Object) {
+    console.log('onManageJobClicked()')
+    console.log(job)
+    this.showManagement  = !this.showManagement;
+  }
 }
 
 

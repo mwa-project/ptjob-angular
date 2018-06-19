@@ -1,4 +1,22 @@
-
 <main-menu>
-  
+
 </main-menu>
+<div class="modal" id="modal-id" [ngClass]="{ 'active': showManagement }">
+    <a (click)="onManageJobClicked(element)" class="modal-overlay" aria-label="Close"></a>
+    <div class="modal-container">
+        <div class="modal-header">
+            <a (click)="onManageJobClicked(element)" class="btn btn-clear float-right" aria-label="Close"></a>
+            <div class="modal-title h5">Modal title</div>
+        </div>
+        <div class="modal-body">
+            <div class="content">
+                <!-- content here -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" (click)="onManageJobClicked(element)">Submit</button>
+            <a class="btn btn-link" aria-label="Close" (click)="onManageJobClicked(element)">Close</a>
+
+        </div>
+    </div>
+</div>
