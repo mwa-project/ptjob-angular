@@ -55,14 +55,14 @@ export class UserDetailsComponent implements OnInit {
     }
   }
   updateProfile(){
-    this.userService.updateResume(this.myForm.value);
-    // .subscribe( x => {
-    //   console.log(x);
-    // }, err => {
-    //   console.error(err)
-    // }, () => {
+    this.userService.updateResume(this.myForm.value)
+    .subscribe( x => {
+      console.log(x);
+    }, err => {
+      console.error(err)
+    }, () => {
       
-    // })
+    })
   }
 
   createItemEducation(): FormGroup {

@@ -1,8 +1,10 @@
 <!-- <p>
   user-details works!
 </p> -->
+<div class= "headerInfo" ><img style="border-radius: 50px 50px;" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Smiley face" height="100" width="100"></div>
+
 <div class= "headerInfo" style="font-weight:bold"><h1>{{userData.first_name}}   {{userData.last_name}}</h1> </div>
-<div> <br> </div>
+<div>  </div>
 <div class="headerInfo">E-mail: {{userData.email}} </div>
 <div class="headerInfo">Date of Birth: {{userData.date_of_birth}} | {{userData.gender}} </div>
 <div class="headerInfo">Address: {{userData.location.state}}, {{userData.location.city}} , {{userData.location.zipcode}}, [{{userData.location.coordinates[0]}}, {{userData.location.coordinates[1]}}] </div>
@@ -10,97 +12,117 @@
 <form [formGroup]="myForm">
   <!-- <mat-card class="example-card">
     <mat-card-content> -->
+      <mat-accordion multi="true">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h4>Experiences</h4>
+              </mat-panel-title>
+              <!-- <mat-panel-description>
+                Type your name and age
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <div formArrayName="experiences">      
+                <!-- <mat-label><h3>Experiences</h3></mat-label>   -->
+                <button type="button" class="btn btn-default" (click)="onAddExperience()">Add Experience</button>
+                <div *ngFor="let req of myForm.get('experiences').controls; let i = index">
+                  <div [formGroupName]="i">
+                      <mat-form-field>
+                        <input  matInput placeholder="Company name" formControlName="company_name">                  
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-select placeholder="Month start" formControlName="from_month">
+                          <mat-option *ngFor="let m of months" [value]="m.value" >{{m.text}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-select placeholder="Year start" formControlName="from_year">
+                          <mat-option *ngFor="let m of years" [value]="m" >{{m}}</mat-option>
+                        </mat-select>                 
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-select placeholder="Month end" formControlName="to_month">
+                          <mat-option *ngFor="let m of months" [value]="m.value" >{{m.text}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-select placeholder="Year end" formControlName="to_year">
+                          <mat-option *ngFor="let m of years" [value]="m" >{{m}}</mat-option>
+                        </mat-select>                 
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input  matInput placeholder="Company address" formControlName="company_address">                  
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input  matInput placeholder="Description" formControlName="description">                  
+                      </mat-form-field>
+                      <button type="button" class="btn btn-default" (click)="onRemoveExperience(i)">Remove Experience</button>
+                  </div>          
+                </div>        
+            </div>
+        </mat-expansion-panel>
+        
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h4>Educations</h4>
+              </mat-panel-title>
+              <!-- <mat-panel-description>
+                Type your name and age
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+
+            <div formArrayName="educations">      
+                <!-- <mat-label><h3>Educations</h3></mat-label>   -->
+                <button type="button" class="btn btn-default" (click)="onAddEducation()">Add Aducation</button>
+                <div *ngFor="let req of myForm.get('educations').controls; let i = index">
+                  <div [formGroupName]="i">
+                      <mat-form-field>
+                          <input  matInput placeholder="School name" formControlName="school_name">                  
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input  matInput placeholder="Degree" formControlName="degree">                  
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input  matInput placeholder="Field study" formControlName="field_study">                  
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-select placeholder="Year start" formControlName="start_year">
+                          <mat-option *ngFor="let y of years" [value]="y" >{{y}}</mat-option>
+                        </mat-select>                 
+                      </mat-form-field>              
+                      <mat-form-field>
+                        <mat-select placeholder="Year end" formControlName="end_year">
+                          <mat-option *ngFor="let y of years" [value]="y" >{{y}}</mat-option>
+                        </mat-select>                 
+                      </mat-form-field>
+                      
+                      <!-- <mat-form-field>
+                          <input  matInput placeholder="Year start" formControlName="start_year">                  
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input  matInput placeholder="Year end" formControlName="end_year">                  
+                      </mat-form-field> -->
+                      <mat-form-field>
+                          <input  matInput placeholder="Description" formControlName="description">                  
+                      </mat-form-field>
+                      <button type="button" class="btn btn-default" (click)="onRemoveEducation(i)">Remove Education</button>
+                  </div>          
+                </div>        
+            </div>
+            
+        </mat-expansion-panel>
+
+        <div class="myform">
+            <button mat-raised-button [disabled]="!myForm.valid" type="button" (click)= "updateProfile()" color="primary">Save</button>
+        </div>
+        <!-- <p class="myform">       
+          </p> -->
+
+      </mat-accordion>
+
+
     
-    <div class="myform">
-      <div formArrayName="experiences">      
-        <mat-label><h3>Experiences</h3></mat-label>  
-        <button type="button" class="btn btn-default" (click)="onAddExperience()">Add Experience</button>
-        <div *ngFor="let req of myForm.get('experiences').controls; let i = index">
-          <div [formGroupName]="i">
-              <mat-form-field>
-                <input  matInput placeholder="Company name" formControlName="company_name">                  
-              </mat-form-field>
-              <mat-form-field>
-                <mat-select placeholder="Month start" formControlName="from_month">
-                  <mat-option *ngFor="let m of months" [value]="m.value" >{{m.text}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-select placeholder="Year start" formControlName="from_year">
-                  <mat-option *ngFor="let m of years" [value]="m" >{{m}}</mat-option>
-                </mat-select>                 
-              </mat-form-field>
-              <!-- <mat-form-field>
-                  <input  matInput placeholder="From month" formControlName="from_month">                  
-              </mat-form-field> -->
-              <!-- <mat-form-field>
-                  <input  matInput placeholder="Year start" formControlName="from_year">                  
-              </mat-form-field> -->
-              <mat-form-field>
-                <mat-select placeholder="Month end" formControlName="to_month">
-                  <mat-option *ngFor="let m of months" [value]="m.value" >{{m.text}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-select placeholder="Year end" formControlName="to_year">
-                  <mat-option *ngFor="let m of years" [value]="m" >{{m}}</mat-option>
-                </mat-select>                 
-              </mat-form-field>
-              <mat-form-field>
-                  <input  matInput placeholder="Company address" formControlName="company_address">                  
-              </mat-form-field>
-              <mat-form-field>
-                  <input  matInput placeholder="Description" formControlName="description">                  
-              </mat-form-field>
-              <button type="button" class="btn btn-default" (click)="onRemoveExperience(i)">Remove Experience</button>
-          </div>          
-        </div>        
-    </div>
-  
-    <div formArrayName="educations">      
-        <mat-label><h3>Educations</h3></mat-label>  
-        <button type="button" class="btn btn-default" (click)="onAddEducation()">Add Aducation</button>
-        <div *ngFor="let req of myForm.get('educations').controls; let i = index">
-          <div [formGroupName]="i">
-              <mat-form-field>
-                  <input  matInput placeholder="School name" formControlName="school_name">                  
-              </mat-form-field>
-              <mat-form-field>
-                  <input  matInput placeholder="Degree" formControlName="degree">                  
-              </mat-form-field>
-              <mat-form-field>
-                  <input  matInput placeholder="Field study" formControlName="field_study">                  
-              </mat-form-field>
-              <mat-form-field>
-                <mat-select placeholder="Year start" formControlName="start_year">
-                  <mat-option *ngFor="let y of years" [value]="y" >{{y}}</mat-option>
-                </mat-select>                 
-              </mat-form-field>              
-              <mat-form-field>
-                <mat-select placeholder="Year end" formControlName="end_year">
-                  <mat-option *ngFor="let y of years" [value]="y" >{{y}}</mat-option>
-                </mat-select>                 
-              </mat-form-field>
-              
-              <!-- <mat-form-field>
-                  <input  matInput placeholder="Year start" formControlName="start_year">                  
-              </mat-form-field>
-              <mat-form-field>
-                  <input  matInput placeholder="Year end" formControlName="end_year">                  
-              </mat-form-field> -->
-              <mat-form-field>
-                  <input  matInput placeholder="Description" formControlName="description">                  
-              </mat-form-field>
-              <button type="button" class="btn btn-default" (click)="onRemoveEducation(i)">Remove Education</button>
-          </div>          
-        </div>        
-    </div>
-      <p>
-       
-        <button mat-raised-button [disabled]="!myForm.valid" type="button" (click)= "updateProfile()" color="primary">Save</button>
-      </p>
-  
-  </div>
     <!-- </mat-card-content></mat-card> -->
   </form>
   <!-- </div> -->
