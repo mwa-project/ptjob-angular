@@ -15,6 +15,8 @@ export function rootReducer(lastState: IAppState, action: ApplicationAction): IA
             return { processingJob: action.job };
         case ManagementApplicationActions.DONE:
             return { processingJob: null }
+        case ManagementApplicationActions.SUBMIT:
+            return { processingJob: null };
     }
     return lastState;
 }

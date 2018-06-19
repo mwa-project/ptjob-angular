@@ -36,7 +36,6 @@ export class ViewJobsComponent implements OnInit {
     });
    }
 
-
    ngOnInit() {
      this.activatedRoute.params.subscribe(params => {
        let userId = params['userId'];
@@ -56,13 +55,18 @@ export class ViewJobsComponent implements OnInit {
   onManageJobClicked(job: Object) {
     console.log('onManageJobClicked()')
     let dialogRef = this.dialog.open(ManageJobComponent, {
-      height: '400px',
-      width: '600px',
+      // height: '400px',
+      // width: '600px',
     });
-    // this.ngRedux.dispatch(this.actions.manage({ _id: 'hello id', title: 'hello title'}));
-    // console.log(job)
-    // this.showManagement  = !this.showManagement;
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`); 
+      this.ngRedux.dispatch(this.actions.done());
+      console.log('dispatch');
+    });
   }
+
+  
 }
 
 

@@ -7,6 +7,7 @@ import { Action } from 'redux';
 export class ManagementApplicationActions {
   static MANAGE = 'MANAGE';
   static DONE = 'DONE';
+  static SUBMIT = 'SUBMIT';
 
   manage(job: {_id: string, title: string }): ApplicationAction {
     return { type: ManagementApplicationActions.MANAGE, job: job };
@@ -14,6 +15,10 @@ export class ManagementApplicationActions {
 
   done(): ApplicationAction {
     return { type: ManagementApplicationActions.DONE, job: null }
+  }
+  
+  submit(): ApplicationAction {
+    return { type: ManagementApplicationActions.SUBMIT, job: null }
   }
 }
 
