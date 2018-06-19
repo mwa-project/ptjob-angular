@@ -28,8 +28,14 @@
           <td mat-cell *matCellDef="let element"> {{element.period.end_date | date }} </td>
         </ng-container>
         <ng-container matColumnDef="view">
-            <th mat-header-cell *matHeaderCellDef> Ends </th>
-            <td mat-cell *matCellDef="let element"><button type="button" (click) = "viewJob(element)">View</button></td>
+            <th mat-header-cell *matHeaderCellDef> Applications </th>
+            <td mat-cell *matCellDef="let element">
+              <!-- <label>{{ element.applicants.length }}</label> -->
+              <!-- <a id="application-badge" class="badge" data-badge="9"> -->
+              <!-- <button class="btn btn-sm badge" data-badge="8" type="button" (click) = "viewJob(element)">  Applications</button> -->
+              <button class="btn btn-sm badge" data-badge="8" type="button" [routerLink] = "['/applications', element._id]">  Applications</button>
+            <!-- </a> -->
+            </td>
           </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
