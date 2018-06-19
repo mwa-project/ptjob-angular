@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatCardTitle } from '@angular/material';
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -23,6 +23,7 @@ import { UserService } from './users/user.service';
 import { LoginComponent } from './users/login/login.component';
 import { JobsService } from './jobs/jobs.service';
 import { TokenInterceptor } from './services/token.interceptor';
+import { ViewJobGuard } from './jobs/view-job.guard';
 
 
 @NgModule({
@@ -38,9 +39,9 @@ import { TokenInterceptor } from './services/token.interceptor';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule, MatCardModule, MatFormFieldModule,
+    MatListModule,  MatFormFieldModule,
      MatOptionModule, MatSelectModule, MatInputModule,
-     MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule,
+     MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule, 
      AgmCoreModule.forRoot({
        apiKey : server.apiKey
      })
@@ -53,7 +54,7 @@ import { TokenInterceptor } from './services/token.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }, ViewJobsComponent],
+    },ViewJobGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

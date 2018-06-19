@@ -1,4 +1,5 @@
-import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, CanActivate } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostJobsComponent } from './post-jobs/post-jobs.component';
@@ -8,11 +9,14 @@ import { JobRatingComponent } from './job-rating/job-rating.component';
 import { MyApplicationsComponent } from './my-applications/my-applications.component';
 import { ViewJobComponent } from './view-job/view-job.component';
 
-import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatSortModule, MatSelectModule, MatTableModule, MatNativeDateModule, MatListModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule,
+   MatSortModule, MatSelectModule, MatTableModule, MatNativeDateModule, MatListModule, MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material';
 
 //import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule } from '@angular/material';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ViewJobGuard } from './view-job.guard';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 export const jobRoutes = [
@@ -21,7 +25,8 @@ export const jobRoutes = [
   { path: "review-applications", component: ReviewApplicationsComponent},
   { path: "view-jobs", component: ViewJobsComponent},
 
-  { path: "review-applications", component: ReviewApplicationsComponent }
+  { path: "review-applications", component: ReviewApplicationsComponent },
+  { path: "view-job", component: ViewJobComponent }
 
 ]
 
@@ -32,8 +37,13 @@ export const jobRoutes = [
     , MatInputModule
     , ReactiveFormsModule
 
-    , MatIconModule,MatDatepickerModule, MatNativeDateModule  , MatTableModule
-   
+    , MatIconModule,MatDatepickerModule, MatNativeDateModule  , MatTableModule, BrowserAnimationsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatDialogModule,
+    MatButtonModule
+,  MatCardModule 
 
     , MatIconModule
     , MatDatepickerModule,
@@ -46,6 +56,7 @@ export const jobRoutes = [
     JobRatingComponent, 
     MyApplicationsComponent, 
     ViewJobComponent
-  ]
+  ],
+  providers: [ViewJobGuard]
 })
 export class JobsModule { }

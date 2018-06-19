@@ -1,0 +1,25 @@
+.example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  
+  div.columns {
+    float: left;
+    margin-right: 80px;
+   
+  }
+  span.field {
+
+    font-weight: bold;
+  }
+
+  mat-card-content {
+      overflow: hidden;
+      margin: 20px;
+  }
+
+  mat-card-actions {
+    margin: 2px;
+  }

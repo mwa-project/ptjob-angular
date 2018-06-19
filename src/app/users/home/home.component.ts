@@ -1,7 +1,7 @@
 import { ViewJobsComponent } from './../../jobs/view-jobs/view-jobs.component';
 import { JobsService } from './../../jobs/jobs.service';
 
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 
 import { DataSource } from '@angular/cdk/table'
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'], 
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent  {
 
@@ -30,6 +31,11 @@ export class HomeComponent  {
     jobsService.getJobs().subscribe( x => {
       this.jobs = x["data"];
     })
+
+    jobsService.map.subscribe( show => {
+      this.showMap = show 
+      console.log("map")
+    } )
     }
 
   public getPosition() {
@@ -48,7 +54,9 @@ export class HomeComponent  {
 
   openWindow(data){
     this.selectedJob  = data;
-    this.clicked = true;
+    // this.clicked = true;
+    this.jobsService.currentJob = data;
+    this.router.navigate(['view-job']);
   // this.showMap = false;
   }
 

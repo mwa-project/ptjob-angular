@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { JobsService } from './../jobs.service';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -15,17 +17,23 @@ export class ViewJobsComponent implements OnInit {
 
   displayedColumns = ['index','category', 'description', 'start_date', 'end_date', 'view'];
   dataSource ;
+
   
   // constructor() { }
 
   //jobs: Array<Object>;
-  constructor(private jobService: JobService) {
+  constructor(private jobService: JobService, private jobsService: JobsService, private router: Router) {
 
     this.jobService.getJobs().subscribe(list => {
       this.dataSource = list;
     });
    }
 
+   viewJob(job){
+
+    this.jobsService.currentJob = job;
+    this.router.navigate(['view-job',job._id]);
+   }
 
   ngOnInit() {
     // this.jobService.getJobs().subscribe(list => {
