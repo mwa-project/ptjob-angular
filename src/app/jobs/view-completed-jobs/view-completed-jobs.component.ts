@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 
 
-import { PtjobService } from '../ptjob.service';
+import { JobService } from '../../services/job.service';
 import { IAppState } from '../../app.store';
 import { NgRedux } from '@angular-redux/store';
 import { ApplicationAction, ManagementApplicationActions } from '../../app.actions';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ManageJobComponent } from '../manage-job.component';
+import { UserService } from '../../users/user.service';
+import { RatingDialogComponent } from '../rating-dialog/rating-dialog.component';
 
 @Component({
   selector: 'app-view-completed-jobs',
@@ -16,22 +18,27 @@ import { ManageJobComponent } from '../manage-job.component';
   styleUrls: ['./view-completed-jobs.component.css']
 })
 export class ViewCompletedJobsComponent implements OnInit {
-
-  displayedColumns = ['index','category', 'description', 'start_date', 'end_date', 'view'];
+  displayedColumns = ['index','job_name', 'posted_date', 'status', 'start_date', 'end_date', 'view'];
   dataSource ;
+  userData;
   
   // constructor() { }
   // showManagement: boolean = false;
   //jobs: Array<Object>;
-  constructor(private jobService: PtjobService, 
+  constructor(private userService:UserService ,  private jobService: JobService, 
     private ngRedux: NgRedux<IAppState>, 
     private actions: ManagementApplicationActions,  
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog) {
 
-    this.jobService.getCompletedJobs(9).subscribe(list => {
-      this.dataSource = list;
-    });
+    // this.jobService.getJobs().subscribe(list => {
+    //   this.dataSource = list;
+    // });
+    this.userData = userService.getCurrentUser();
+    this.dataSource = this.userData.job_posts;
+    //this.dataSource.userFullName = this.userData.first_name+" "+ this.userData.last_name;
+    console.log(this.userData); 
+    console.log(this.dataSource); 
    }
 
    ngOnInit() {
@@ -50,11 +57,12 @@ export class ViewCompletedJobsComponent implements OnInit {
   }
 
 
-  onManageJobClicked(job: Object) {
-    console.log('onManageJobClicked()')
-    let dialogRef = this.dialog.open(ManageJobComponent, {
+  onGiveRating(job: Object) {
+    console.log('onGiveRating()')
+    let dialogRef = this.dialog.open(RatingDialogComponent, {
       // height: '400px',
-      // width: '600px',
+      width: '600px',
+      data: this.dataSource
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -63,5 +71,8 @@ export class ViewCompletedJobsComponent implements OnInit {
       console.log('dispatch');
     });
   }
+
+
+  
 
 }

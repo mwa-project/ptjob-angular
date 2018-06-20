@@ -20,6 +20,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ManageJobComponent } from './manage-job.component';
 import { ViewCompletedJobsComponent } from './view-completed-jobs/view-completed-jobs.component';
 import { MySuccessfulJobappsComponent } from './my-successful-jobapps/my-successful-jobapps.component';
+import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
 
 
 export const jobRoutes = [
@@ -58,7 +59,8 @@ export const jobRoutes = [
     ViewJobComponent,
     ManageJobComponent,
     ViewCompletedJobsComponent,
-    MySuccessfulJobappsComponent
+    MySuccessfulJobappsComponent,
+    RatingDialogComponent
   ],
   exports: [
     // ManageJobComponent
