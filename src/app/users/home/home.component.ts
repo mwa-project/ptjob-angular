@@ -48,15 +48,20 @@ export class HomeComponent  {
   public onChooseLocation(event){
      this.clickedLatitude = event.coords.lat;
      this.clickedLongitude = event.coords.lng;
+     this.latitude = event.coords.lat;
+     this.longitude = event.coords.lng;
      this.clicked = true;
+     let loc = { longitude: this.clickedLongitude, latitude : this.clickedLatitude} ;
+     this.jobsService.setLocation(loc);
      this.router.navigate(['view-jobs']);
   }
 
   openWindow(data){
     this.selectedJob  = data;
     // this.clicked = true;
-    this.jobsService.currentJob = data;
     this.router.navigate(['view-job']);
+    this.jobsService.currentJob = data;
+   
   // this.showMap = false;
   }
 

@@ -24,11 +24,12 @@ export class MainMenuComponent {
 
   ngAfterContentChecked() {
     this.user = this.userService.getCurrentUser();
-    // console.table(this.user);
+    // console.log(this.user);
   }
 
   onSignOut() {
     console.log('onSignOut() clicked!');
+    this.userService.signOut();
   }
   
 }

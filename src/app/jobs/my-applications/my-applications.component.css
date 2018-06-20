@@ -1,0 +1,11 @@
+#job-name {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#app-item p {
+    /* color: red; */
+    padding-top: 5px;
+    color: gray;
+
+}

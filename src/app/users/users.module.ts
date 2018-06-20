@@ -1,5 +1,5 @@
 import { JobsModule } from './../jobs/jobs.module';
-import { MatTableModule, MatDatepickerModule, MatNativeDateModule, MatCardModule } from '@angular/material';
+import { MatTableModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, MatFormFieldModule, MatIconModule } from '@angular/material';
 import { ViewJobsComponent } from './../jobs/view-jobs/view-jobs.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -17,7 +17,8 @@ export const userRoutes = [
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule.forChild(userRoutes),MatDatepickerModule, MatNativeDateModule,MatTableModule,MatCardModule, JobsModule
+    CommonModule, RouterModule.forChild(userRoutes),MatDatepickerModule, MatNativeDateModule,MatTableModule,MatCardModule, 
+    JobsModule, MatFormFieldModule, MatIconModule, MatFormFieldModule
   ],
   declarations: [ UserDetailsComponent, ViewJobsComponent],
   providers: [ViewJobGuard]

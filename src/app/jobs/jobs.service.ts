@@ -14,10 +14,18 @@ export class JobsService {
   public currentToken: string;
   private _currentJob :Subject<Object>;
   private _map :Subject<boolean>
+  private _location : Subject<Object>;
 
+
+  get location(){
+    return this._location;
+  }
+
+  setLocation(value){
+    this._location.next(value);
+  }
 
   get currentJob(){
-
     return this._currentJob;
   }
 
@@ -44,10 +52,24 @@ export class JobsService {
     this.jobsLink = this.userService.getUrl("/job-posts");
     this._currentJob = new Subject();
     this._map = new Subject();
+    this._location = new Subject();
   }
 
   public getJobs() {
     return this.http.get(this.jobsLink);
+  }
+
+  public getJobsByText(search) {
+    return this.http.get(this.jobsLink + "/" + search);
+  }
+
+  public getJobsByDistace(long, lat , dist) {
+    return this.http.get(this.jobsLink + "/" + long + "/" + lat + "/" + dist );
+  }
+
+  public applyJob(data){
+    let applyLink  = this.userService.getUrl("/job-posts/" + data._id);
+    return this.http.patch(applyLink, data);
   }
 }
 

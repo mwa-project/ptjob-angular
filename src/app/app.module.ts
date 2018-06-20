@@ -24,6 +24,8 @@ import { LoginComponent } from './users/login/login.component';
 import { JobsService } from './jobs/jobs.service';
 import { TokenInterceptor } from './services/token.interceptor';
 import { ViewJobGuard } from './jobs/view-job.guard';
+import { NgReduxModule, NgRedux } from '@angular-redux/store'; 
+import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
 
 
 @NgModule({
@@ -40,11 +42,12 @@ import { ViewJobGuard } from './jobs/view-job.guard';
     MatSidenavModule,
     MatIconModule,
     MatListModule,  MatFormFieldModule,
-     MatOptionModule, MatSelectModule, MatInputModule,
+     MatOptionModule, MatSelectModule, MatInputModule, MatCardModule, MatButtonModule, BrowserModule, BrowserAnimationsModule,
      MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule, HttpClientModule, 
      AgmCoreModule.forRoot({
        apiKey : server.apiKey
-     })
+     }),
+     NgReduxModule
 
   ],
   providers: [
@@ -57,4 +60,10 @@ import { ViewJobGuard } from './jobs/view-job.guard';
     },ViewJobGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(
+      rootReducer,
+      INITIAL_STATE);
+  }
+ }

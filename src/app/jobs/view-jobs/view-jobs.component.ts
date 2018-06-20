@@ -5,6 +5,9 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { JobService } from '../../services/job.service';
+import { IAppState } from '../../app.store';
+import { NgRedux } from '@angular-redux/store';
+import { ApplicationAction, ManagementApplicationActions } from '../../app.actions';
 
 
 @Component({
@@ -14,16 +17,26 @@ import { JobService } from '../../services/job.service';
 })
 export class ViewJobsComponent implements OnInit {
 
+  longitude;
+  latitude
 
   displayedColumns = ['index','category', 'description', 'start_date', 'end_date', 'view'];
   dataSource ;
 
-  
+  public getPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+     this.latitude = position.coords.latitude;
+     this.longitude = position.coords.longitude;
+    });
+  }
   // constructor() { }
-
+  showManagement: boolean = false;
   //jobs: Array<Object>;
-  constructor(private jobService: JobService, private jobsService: JobsService, private router: Router) {
 
+  // constructor(private jobService: JobService, private jobsService: JobsService, private router: Router) {
+  constructor(private jobService: JobService, private jobsService: JobsService, private router: Router,
+    private ngRedux: NgRedux<IAppState>, private actions: ManagementApplicationActions) {
+      this.getPosition();
     this.jobService.getJobs().subscribe(list => {
       this.dataSource = list;
     });
@@ -35,12 +48,39 @@ export class ViewJobsComponent implements OnInit {
     this.router.navigate(['view-job',job._id]);
    }
 
+   searchString(search){
+     this.jobsService.getJobsByText(search.value).subscribe(list => {
+      this.dataSource = list['data'];
+      console.log(list)
+    });
+   }
+
+   searchDistance(dist){
+    this.jobsService.getJobsByDistace(this.longitude, this.latitude, dist.value).subscribe(list => {
+      this.dataSource = list['data'];
+      console.log(list)
+    });
+   }
+
   ngOnInit() {
+
+    this.jobsService.location.subscribe( x => {
+      this.latitude = x['latitude'];
+      this.longitude = x['longitude'];
+    })
     // this.jobService.getJobs().subscribe(list => {
     //   this.jobs = list;
     // });
   }
 
+
+  onManageJobClicked(job: Object) {
+    console.log('onManageJobClicked()')
+  
+    this.ngRedux.dispatch(this.actions.manage({ _id: 'hello id', title: 'hello title'}));
+    // console.log(job)
+    // this.showManagement  = !this.showManagement;
+  }
 }
 
 

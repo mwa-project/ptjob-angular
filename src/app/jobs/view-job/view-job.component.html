@@ -16,6 +16,10 @@
         <span class="field">to: </span> {{ selectedJob.salary_range.to | currency  }} 
     </mat-card-title>
     
+    <mat-card-title> <span class="field">Status : </span> {{ status  }} 
+     
+  </mat-card-title>
+
   </div>
     </mat-card-header>
     <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
@@ -33,8 +37,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions><div>
-      <button mat-button >Apply</button>
-      <button mat-button (click) = "closeJobWindow()">Close Job</button>
+      <button *ngIf="canApply" mat-button (click)= "applyForAjob(selectedJob)">Apply</button>
+      <button mat-button (click) = "closeJobWindow()">Close Window</button>
       <button mat-button (click) = "toggleMap()">ToggleMap</button></div>
     </mat-card-actions>
   </mat-card> 

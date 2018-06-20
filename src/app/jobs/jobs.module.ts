@@ -9,10 +9,16 @@ import { JobRatingComponent } from './job-rating/job-rating.component';
 import { MyApplicationsComponent } from './my-applications/my-applications.component';
 import { ViewJobComponent } from './view-job/view-job.component';
 
-import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule,
-   MatSortModule, MatSelectModule, MatTableModule, MatNativeDateModule, MatListModule, MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material';
+// import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule,
+//    MatSortModule, MatSelectModule, MatTableModule, MatNativeDateModule, MatListModule, MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule,
+   MatInput, MatIconModule, MatDatepickerModule, 
+   MatSortModule, MatSelectModule, MatTableModule, 
+   MatNativeDateModule, MatListModule, MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material';
+   import {MatStepperModule} from '@angular/material/stepper';
 
-//import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule } from '@angular/material';
+
+//import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule, MatButtonModule, MatCardModule } from '@angular/material';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ViewJobGuard } from './view-job.guard';
@@ -32,6 +38,7 @@ export const jobRoutes = [
 
 @NgModule({
   imports: [
+
     CommonModule, RouterModule.forChild(jobRoutes)
     , MatFormFieldModule
     , MatInputModule
@@ -44,11 +51,22 @@ export const jobRoutes = [
     MatDialogModule,
     MatButtonModule
 ,  MatCardModule 
-
+, MatButtonModule
     , MatIconModule
-    , MatDatepickerModule,
-    MatListModule,
+    , MatDatepickerModule, MatFormFieldModule,
 
+    CommonModule, 
+    RouterModule.forChild(jobRoutes),
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatDatepickerModule, 
+    MatNativeDateModule, 
+    MatTableModule, 
+    MatStepperModule,
+    MatDatepickerModule, MatButtonModule, MatCardModule,
+   MatIconModule,MatFormFieldModule,
+    MatListModule,
   ],
   declarations: [
     PostJobsComponent, 
