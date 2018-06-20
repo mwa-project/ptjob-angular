@@ -37,7 +37,7 @@ import { ManagementApplicationActions } from '../app.actions';
   <button mat-raised-button [mat-dialog-close]="1">Cancel</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
   <button mat-raised-button [mat-dialog-close]="2">Close it</button>
-  <button mat-raised-button [mat-dialog-close]="3">Mark it Done</button>
+  <button mat-raised-button [mat-dialog-close]="3">Mark it as Complete</button>
 </mat-dialog-actions>
 
   `,

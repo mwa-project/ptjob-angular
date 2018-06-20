@@ -27,7 +27,7 @@
       </li>
     </ul>
 
-    <button id="btn-manage" class="btn btn-sm" (click)="accept(app.job_id)">Accept</button>
+    <button *ngIf="showAccept" id="btn-manage" class="btn btn-sm" (click)="accept(app.job_id)">Accept</button>
 
 
   </mat-list-item>

@@ -35,10 +35,32 @@ export class JobService {
     return this.http.get(this.getUrl(jobId));
   }
 
-  public updateStatus(jobId: string, status: string): Observable<Object> {
-    console.log('updateStatus: ' + jobId + ', ' + status);
-    let url = this.getUrl(jobId + '/status/' + status);
+  public getJobsByUserId(userId: string) {
+    return this.http.get(this.getUrl("user/" + userId));
+  }
+  // public updateStatus(jobId: string, status: string): Observable<Object> {
+  //   console.log('updateStatus: ' + jobId + ', ' + status);
+  //   let url = this.getUrl(jobId + '/status/' + status);
+  //   console.log(url)
+  //   return this.http.patch(url, {});
+  // }
+
+  public competed(jobId: string) {
+    let url = this.getUrl(jobId + '/competed');
+    console.log(url)
+    return this.http.patch(url, {});
+
+  }
+  public close(jobId: string) {
+    let url = this.getUrl(jobId + '/close');
     console.log(url)
     return this.http.patch(url, {});
   }
+
+  public accept(jobId: string, userId: string) {
+    let url = this.getUrl(jobId + '/accept/' + userId);
+    console.log(url)
+    return this.http.patch(url, {});
+  }
+
 }

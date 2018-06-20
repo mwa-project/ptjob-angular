@@ -26,11 +26,11 @@
     <th mat-header-cell *matHeaderCellDef> Ends </th>
     <td mat-cell *matCellDef="let element"> {{element.period.end_date | date }} </td>
   </ng-container>
-  <ng-container matColumnDef="view">
+  <ng-container  matColumnDef="view">
     <th mat-header-cell *matHeaderCellDef> Applications </th>
     <td mat-cell *matCellDef="let element">
-      <button id="btn-manage" class="btn btn-sm" (click)="onManageJobClicked(element)">Manage</button>
-      <button class="btn btn-sm badge" attr.data-badge="{{ element.applicants.length }}" [routerLink]="['/applications', element._id]">Applications</button>
+      <button *ngIf="showManagement" id="btn-manage" class="btn btn-sm" (click)="onManageJobClicked(element)">Manage</button>
+      <button *ngIf="showManagement" class="btn btn-sm badge" attr.data-badge="{{ element.applicants.length }}" [routerLink]="['/applications', element._id]">Applications</button>
     </td>
   </ng-container>
 

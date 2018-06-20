@@ -30,10 +30,10 @@ export class ApplicationService {
     });
   }
 
-  public accept(applicationId: string) {
-    console.log(applicationId);
-    // TODO:
-    // console.log('TODO: goto server');
+  // public accept(applicationId: string) {
+  //   console.log(applicationId);
+  //   // TODO:
+  //   // console.log('TODO: goto server');
     
-  }
+  // }
 }

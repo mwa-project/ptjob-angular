@@ -23,7 +23,7 @@ export class ViewJobsComponent implements OnInit {
   dataSource ;
   
   // constructor() { }
-  // showManagement: boolean = false;
+  showManagement: boolean = false;
   //jobs: Array<Object>;
   job: any;
   constructor(private jobService: JobService, 
@@ -32,9 +32,10 @@ export class ViewJobsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog) {
 
-    this.jobService.getJobs().subscribe(list => {
-      this.dataSource = list;
-    });
+    // this.jobService.getJobs().subscribe(list => {
+    //   this.dataSource = list;
+    //   this.showManagement = false;
+    // });
    }
 
    ngOnInit() {
@@ -42,8 +43,23 @@ export class ViewJobsComponent implements OnInit {
        let userId = params['userId'];
        if (userId) {
         console.log('show job list by user ID: ' + params['userId']);
+        
+
+        this.jobService.getJobsByUserId(userId).subscribe(res => {
+          console.log(res['data'])
+          // this.dataSource.clear();
+          this.dataSource = res['data']
+          this.showManagement = true;
+        })
        } else {
          console.log('show the full job list');
+         this.jobService.getJobs().subscribe(list => {
+           console.log(list)
+          //  this.dataSource.clear();
+           this.dataSource = list;
+           this.showManagement = false;
+        });
+         
        }
        
      });
@@ -55,25 +71,24 @@ export class ViewJobsComponent implements OnInit {
 
   onManageJobClicked(job: Object) {
     this.job = job;
-    console.log('onManageJobClicked()')
     let dialogRef = this.dialog.open(ManageJobComponent);
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`); 
       console.log(result);
-      let newStatus = 'Pending';
       if (result == 2) {
-        newStatus = 'Close';
+        // Close
+        this.jobService.close(this.job['_id']).subscribe(res => {
+          console.log(`close: ${res}`)
+
+        })
       } else if (result == 3) {
-        newStatus = 'Done';
+        // Completed
+        this.jobService.competed(this.job['_id']).subscribe(res => {
+          console.log(`completed: ${res['data']}`)
+        })
       }
-      this.jobService.updateStatus(this.job['_id'],newStatus).subscribe(result=> {
-        console.log(result['data']);
-      });
     });
   }
 }
-
 
 // export interface Job {
 //   name: string;
