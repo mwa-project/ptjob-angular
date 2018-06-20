@@ -18,6 +18,8 @@ import { MatFormFieldModule, MatInputModule,
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ManageJobComponent } from './manage-job.component';
+import { ViewCompletedJobsComponent } from './view-completed-jobs/view-completed-jobs.component';
+import { MySuccessfulJobappsComponent } from './my-successful-jobapps/my-successful-jobapps.component';
 
 
 export const jobRoutes = [
@@ -54,7 +56,9 @@ export const jobRoutes = [
     JobRatingComponent, 
     MyApplicationsComponent, 
     ViewJobComponent,
-    ManageJobComponent
+    ManageJobComponent,
+    ViewCompletedJobsComponent,
+    MySuccessfulJobappsComponent
   ],
   exports: [
     // ManageJobComponent

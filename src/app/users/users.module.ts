@@ -14,7 +14,8 @@ import { MatTableModule,
   , MatRadioButton
   , MatRadioModule
   , MatDatepickerModule
-  , MatNativeDateModule 
+  , MatNativeDateModule, 
+  MatExpansionModule
  } from '@angular/material';
 
 
@@ -48,6 +49,7 @@ export const userRoutes = [
     MatListModule, MatCardModule, MatFormFieldModule,
      MatOptionModule, MatSelectModule, MatInputModule,
      MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule
+     , MatExpansionModule
   ],
   declarations: [ UserDetailsComponent, ViewJobsComponent]
 })
