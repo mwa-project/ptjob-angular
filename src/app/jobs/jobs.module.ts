@@ -32,9 +32,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ManageJobComponent } from './manage-job.component';
 import { ViewCompletedJobsComponent } from './view-completed-jobs/view-completed-jobs.component';
 import { MySuccessfulJobappsComponent } from './my-successful-jobapps/my-successful-jobapps.component';
+
 import { NgRedux } from '@angular-redux/store';
 import { ApplicationActionState } from './myApplicationsState';
 import { store } from './myApplicationsState';
+import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
+
+
+// import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
 
 
 
@@ -92,7 +97,8 @@ export const jobRoutes = [
     ViewJobComponent,
     ManageJobComponent,
     ViewCompletedJobsComponent,
-    MySuccessfulJobappsComponent
+    MySuccessfulJobappsComponent,
+    RatingDialogComponent
   ],
   providers: [ViewJobGuard]
 ,

@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
+  <mat-sidenav *ngIf="!hideMenu"
     #drawer
     class="sidenav"
     fixedInViewport="true"
@@ -10,13 +10,18 @@
      
         <div *ngIf="user" class="example-header-image"></div> <div id="logged_in_user" *ngIf="user">{{ user.user_name }}</div>
     </mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list >
 
       <a  mat-list-item [routerLink] ="['']">Home</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['profile']">Profile</a>
       <a *ngIf="!user" mat-list-item [routerLink] = "['sign-up']">Sign up</a>
-      <a *ngIf="!user" mat-list-item [routerLink] = "['login']">Login</a>
+
+      <!-- <a *ngIf="!user" mat-list-item [routerLink] = "['login']">Login</a> -->
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs', user._id]">Search Jobs</a>
+
+      <a *ngIf="!user" mat-list-item (click)="onLogin()" [routerLink] = "['login']">Login</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['sign-up']">Search Jobs</a>
+
       <a *ngIf="user" mat-list-item [routerLink] = "['post-job']">Post a Job</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs']">Job List</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs', user._id]">View My Posts</a>

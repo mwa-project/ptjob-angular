@@ -30,6 +30,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { ViewJobGuard } from '../jobs/view-job.guard';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 export const userRoutes = [
@@ -57,7 +58,11 @@ export const userRoutes = [
     MatListModule, MatCardModule, MatFormFieldModule,
      MatOptionModule, MatSelectModule, MatInputModule,
      MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule
+
      , MatExpansionModule
+
+
+     , MatExpansionModule, MatGridListModule
 
   ],
   declarations: [ UserDetailsComponent, ViewJobsComponent],

@@ -28,8 +28,18 @@ export function AddApplicationAction( applicationData : JobApplication){
     }
 }
 
+export const SET_APPLICATIONS = 'SET_APPLICATIONS';
+
+export function SetApplicationActions( applicationData : JobApplication){
+    return {
+        type : SET_APPLICATIONS,
+        data : applicationData
+    }
+}
+
 const initialState : ApplicationActionState = {
-    data :  JSON.parse(localStorage.getItem('user'))['job_applications']
+    
+    data  : []
 }
 
 function addApplication(state, action): ApplicationActionState {
@@ -38,11 +48,21 @@ function addApplication(state, action): ApplicationActionState {
 
 }
 
+
+function setApplications(state, action): ApplicationActionState {
+
+    return Object.assign({}, state, { data :[...state.data, ...action.data] } );
+
+}
+
+
 export function reducer( state: ApplicationActionState = initialState, action){
     
     switch(action.type){
         case  ADD_APPLICATION :
         return addApplication(state,action);
+        case  SET_APPLICATIONS :
+        return setApplications(state,action);
         default :return state
     }
 }
