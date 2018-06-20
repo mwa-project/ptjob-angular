@@ -21,8 +21,16 @@ export class PtjobService {
   }
 
   getJobPost(id){
-    return this.http.get('');
+    return this.http.get(this.jobPostLink);
+  } 
+  public updateRating(data){
+    console.log('updateRating(data){');
+    console.log(data);
+    console.log(this.jobPostLink+'/update_rating');
+    
+    return this.http.put(this.jobPostLink, data); //+'/update_rating'
   }
+
   getCompletedJobs(employer_id){
     //return this.http.get(this.jobPostLink, employer_id);
     return this.http.get(this.getUrl(employer_id));

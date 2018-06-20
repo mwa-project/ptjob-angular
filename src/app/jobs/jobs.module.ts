@@ -14,10 +14,14 @@ import { ViewJobComponent } from './view-job/view-job.component';
 import { MatFormFieldModule, MatInputModule,
    MatInput, MatIconModule, MatDatepickerModule, 
    MatSortModule, MatSelectModule, MatTableModule, 
+    MatDialog,   MatRadioModule,
 
    MatNativeDateModule, MatListModule, MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material';
 
   //  MatNativeDateModule, MatListModule, MatDialog, MatDialogModule, MatButtonModule } from '@angular/material';
+
+
+    // } from '@angular/material';
 
    import {MatStepperModule} from '@angular/material/stepper';
 
@@ -86,7 +90,8 @@ export const jobRoutes = [
    MatIconModule,MatFormFieldModule,
     MatListModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule, 
+    MatRadioModule
   ],
   declarations: [
     PostJobsComponent, 
@@ -107,7 +112,7 @@ export const jobRoutes = [
     // ManageJobComponent
   ],
   entryComponents: [
-    ManageJobComponent
+    ManageJobComponent, RatingDialogComponent
   ]
 })
 export class JobsModule { 

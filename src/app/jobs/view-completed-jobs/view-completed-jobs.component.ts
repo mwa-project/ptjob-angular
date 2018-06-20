@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material';
 import { ManageJobComponent } from '../manage-job.component';
 import { UserService } from '../../users/user.service';
 import { RatingDialogComponent } from '../rating-dialog/rating-dialog.component';
+import { PtjobService } from '../ptjob.service';
+
 
 @Component({
   selector: 'app-view-completed-jobs',
@@ -25,12 +27,12 @@ export class ViewCompletedJobsComponent implements OnInit {
   // constructor() { }
   // showManagement: boolean = false;
   //jobs: Array<Object>;
-  constructor(private userService:UserService ,  private jobService: JobService, 
-    private ngRedux: NgRedux<IAppState>, 
-    private actions: ManagementApplicationActions,  
-    private activatedRoute: ActivatedRoute,
+  constructor(private userService:UserService ,  private jobService: JobService, // PtjobService, 
+    // private ngRedux: NgRedux<IAppState>, 
+    // private actions: ManagementApplicationActions,  
+    // private activatedRoute: ActivatedRoute,
     private dialog: MatDialog) {
-
+      console.log('constructor')
     // this.jobService.getJobs().subscribe(list => {
     //   this.dataSource = list;
     // });
@@ -42,33 +44,40 @@ export class ViewCompletedJobsComponent implements OnInit {
    }
 
    ngOnInit() {
-     this.activatedRoute.params.subscribe(params => {
-       let userId = params['userId'];
-       if (userId) {
-        console.log('show job list by user ID: ' + params['userId']);
-       } else {
-         console.log('show the full job list');
-       }
+    //  this.activatedRoute.params.subscribe(params => {
+    //    let userId = params['userId'];
+    //    if (userId) {
+    //     console.log('show job list by user ID: ' + params['userId']);
+    //    } else {
+    //      console.log('show the full job list');
+    //    }
        
-     });
+    //  });
     // this.jobService.getJobs().subscribe(list => {
     //   this.jobs = list;
     // });
   }
 
 
-  onGiveRating(job: Object) {
+  onGiveRating(job) {
     console.log('onGiveRating()')
+    console.log(job);
     let dialogRef = this.dialog.open(RatingDialogComponent, {
       // height: '400px',
       width: '600px',
-      data: this.dataSource
+      data: {
+        job_id: job.job_id
+        , job_name: job.job_name
+        , rating_type: 1 //means from employer to employee
+        , employer: this.userData.first_name}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`); 
-      this.ngRedux.dispatch(this.actions.done());
-      console.log('dispatch');
+      console.log(result); 
+      this.jobService.updateRating(result);
+      //this.ngRedux.dispatch(this.actions.done());
+      //console.log('dispatch');
+
     });
   }
 
