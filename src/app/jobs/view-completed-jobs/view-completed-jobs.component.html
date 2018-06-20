@@ -1,0 +1,43 @@
+<!-- <p>
+  view-completed-jobs works!
+</p> -->
+Completed Jobs:
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let i = index "> {{i + 1}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Job Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="start_date">
+      <th mat-header-cell *matHeaderCellDef> Starts </th>
+      <td mat-cell *matCellDef="let element"> {{element.period.start_date | date}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="end_date">
+      <th mat-header-cell *matHeaderCellDef> Ends </th>
+      <td mat-cell *matCellDef="let element"> {{element.period.end_date | date }} </td>
+    </ng-container>
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef> Applications </th>
+      <td mat-cell *matCellDef="let element">
+        <button id="btn-manage" class="btn btn-sm" (click)="onManageJobClicked(element)">Manage</button>
+        <button class="btn btn-sm badge" attr.data-badge="{{ element.applicants.length }}" [routerLink]="['/applications', element._id]">Applications</button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></tr>
+  </table>

@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+  }
+
+  #application-badge {
+    margin-right: 20px;
+  }
+
+  #application-badge.bage {
+    /* margin-top: 10px; */
+    margin-top: .3rem
+  }
+
+  #btn-manage {
+    margin-right: 20px;
+  }
