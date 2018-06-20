@@ -12,8 +12,20 @@ export class PtjobService {
   constructor(private http: HttpClient) { 
     this.jobPostLink  = server.host + ":" + server.port + "/job-posts" 
   }
+  private getUrl(params?: string): string {
+    let url = server.host + ":" + server.port + '/job-posts';
+    if (params) {
+      url += ('/' + params);
+    }
+    return url;
+  }
+
   getJobPost(id){
     return this.http.get('');
+  }
+  getCompletedJobs(employer_id){
+    //return this.http.get(this.jobPostLink, employer_id);
+    return this.http.get(this.getUrl(employer_id));
   }
   saveNewJobPost(data){
     console.log(data);
