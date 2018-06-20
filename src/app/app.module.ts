@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,  MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatLabel, MatRadioButton, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatGridListModule } from '@angular/material';
 import { UsersModule } from './users/users.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -49,7 +49,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
      AgmCoreModule.forRoot({
        apiKey : server.apiKey
      }),
-     NgReduxModule, MatProgressSpinnerModule
+     NgReduxModule, MatProgressSpinnerModule, MatGridListModule
 
   ],
   providers: [

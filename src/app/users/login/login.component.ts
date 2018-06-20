@@ -25,16 +25,20 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private router: Router, public fb: FormBuilder, private userService: UserService, public dialog: MatDialog) {
-  
+    console.log('constructor')
     this.loginForm = fb.group({
-      'userName' : ['carl1376420801', Validators.required],
-      'password' : ['123456', Validators.required]
+      'userName' : ['tfarida', Validators.required],
+      'password' : ['tfarida', Validators.required]
     });
     this.loginForm.valueChanges.subscribe(x => console.log(x));
    }
 
    
   ngOnInit() {
+    console.log('init')
+    if (!this.userService.getCurrentUser()) {
+      // hide left main menu
+    }
   }
 
   sleep (time) {
@@ -43,21 +47,25 @@ export class LoginComponent implements OnInit {
   onSignIn(): void {
     this.openDialog();
     console.log('clicked');
-    this.userService.login(
-      this.loginForm.controls['userName'].value, 
-      this.loginForm.controls['password'].value).subscribe(res => {
-        console.log(res);
-        if (res) {
-          console.log('login success');
-          this.sleep(500).then(() => {
-            // Do something after the sleep!
+    this.sleep(500).then(() => {
+      // Do something after the sleep!
+      this.userService.login(
+        this.loginForm.controls['userName'].value, 
+        this.loginForm.controls['password'].value).subscribe(res => {
+          console.log(res);
+          if (res) {
+            console.log('login success');
             this.dialogRef.close();
-                this.router.navigate(['/']);
-         });
-        }
-    }, err => {
-      console.log('login faild!');
-      console.log(err);
-    });
+            this.router.navigate(['/']);
+            
+          }
+      }, err => {
+        console.log('login faild!');
+        console.log(err);
+      });
+      
+   });
+
+    
   }
 }

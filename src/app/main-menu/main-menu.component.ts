@@ -13,6 +13,7 @@ import { UserService } from '../users/user.service';
 export class MainMenuComponent {
 
   user: Object;
+  hideMenu = false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -24,9 +25,16 @@ export class MainMenuComponent {
 
   ngAfterContentChecked() {
     this.user = this.userService.getCurrentUser();
+    if (this.user) {
+      this.hideMenu = false;
+    }
     // console.log(this.user);
   }
 
+  onLogin() {
+    console.log('onLogin!')
+    this.hideMenu = true;
+  }
   onSignOut() {
     console.log('onSignOut() clicked!');
     this.userService.signOut();

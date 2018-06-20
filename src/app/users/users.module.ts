@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 export const userRoutes = [
   { path: "sign-up", component: RegistrationComponent },
@@ -49,7 +50,7 @@ export const userRoutes = [
     MatListModule, MatCardModule, MatFormFieldModule,
      MatOptionModule, MatSelectModule, MatInputModule,
      MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule
-     , MatExpansionModule
+     , MatExpansionModule, MatGridListModule
   ],
   declarations: [ UserDetailsComponent, ViewJobsComponent]
 })
