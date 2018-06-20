@@ -1,5 +1,25 @@
 import { JobsModule } from './../jobs/jobs.module';
-import { MatTableModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, MatFormFieldModule, MatIconModule } from '@angular/material';
+
+//import { MatTableModule, MatDatepickerModule, MatNativeDateModule, MatCardModule, MatFormFieldModule, MatIconModule } from '@angular/material';
+import { MatTableModule,
+  MatToolbarModule
+  , MatButtonModule
+  , MatSidenavModule
+  , MatIconModule
+  , MatListModule
+  ,  MatCardModule
+  , MatFormFieldModule
+  , MatOptionModule
+  , MatSelectModule
+  , MatInputModule
+  , MatLabel
+  , MatRadioButton
+  , MatRadioModule
+  , MatDatepickerModule
+  , MatNativeDateModule, 
+  MatExpansionModule
+ } from '@angular/material';
+
 import { ViewJobsComponent } from './../jobs/view-jobs/view-jobs.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -9,6 +29,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ViewJobGuard } from '../jobs/view-job.guard';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 export const userRoutes = [
   { path: "sign-up", component: RegistrationComponent },
   { path: "login", component: LoginComponent},
@@ -17,8 +40,25 @@ export const userRoutes = [
 
 @NgModule({
   imports: [
+
     CommonModule, RouterModule.forChild(userRoutes),MatDatepickerModule, MatNativeDateModule,MatTableModule,MatCardModule, 
-    JobsModule, MatFormFieldModule, MatIconModule, MatFormFieldModule
+    JobsModule, MatFormFieldModule, MatIconModule, MatFormFieldModule,
+
+    CommonModule, RouterModule.forChild(userRoutes)
+    ,MatDatepickerModule
+    , MatNativeDateModule
+    ,MatTableModule
+    , JobsModule
+    , ReactiveFormsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule, MatCardModule, MatFormFieldModule,
+     MatOptionModule, MatSelectModule, MatInputModule,
+     MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatIconModule
+     , MatExpansionModule
+
   ],
   declarations: [ UserDetailsComponent, ViewJobsComponent],
   providers: [ViewJobGuard]

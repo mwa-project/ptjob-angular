@@ -1,7 +1,13 @@
+import { DataSource } from '@angular/cdk/table';
+import { store, AddApplicationAction } from './../myApplicationsState';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../users/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationService } from '../../services/application.service';
+import { JobService } from '../../services/job.service';
+import { select } from '@angular-redux/store';
+import { ApplicationActionState } from '../myApplicationsState';
 
 @Component({
   selector: 'app-my-applications',
@@ -9,13 +15,41 @@ import { ApplicationService } from '../../services/application.service';
   styleUrls: ['./my-applications.component.css']
 })
 export class MyApplicationsComponent implements OnInit {
-
+ // @select('data') applications: Observable<ApplicationActionState>
   user: Object;
   apps: Array<Object>;
   isAccept = true;
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private appliationService: ApplicationService) { }
+  showAccept = false;
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private appliationService: ApplicationService, 
+    private jobService: JobService,
+    private userService: UserService) {
+
+     
+     
+
+      // store.subscribe( () => {
+      //   let s = store.
+      //  console.log(s)
+      // });
+      console.log('this.applications');
+      // this.applications.subscribe( x => {
+      //   console.log(x);
+      // })
+     }
 
   ngOnInit() {
+
+    console.log('this.applications');
+    console.log( store.getState().applicationReducer);
+    console.log( store.getState().manageReducer.processingJob);
+
+    store.subscribe(()=>{
+      console.log('here');
+      console.log(store.getState().applicationReducer)
+    });
+    
     this.activatedRoute.params.subscribe(params => {
       let jobId = params['jobId'];
       if (jobId) {
@@ -23,12 +57,14 @@ export class MyApplicationsComponent implements OnInit {
         this.appliationService.getApplicationsByJobId(jobId, apps => {
           this.apps = apps;
           console.log(this.apps);
+          this.showAccept = true;
         });
       } else {
         console.log('get applications by current user');
         this.appliationService.getMyApplications(apps => {
           this.apps = apps;
           console.log(this.apps);
+          this.showAccept = false;
         });
       }
     });
@@ -64,6 +100,13 @@ export class MyApplicationsComponent implements OnInit {
     // }];
     // console.log(this.user);
     // console.log(this.apps);
+  }
+
+  accept(jobId: string) {
+    this.jobService.accept(jobId, this.userService.getCurrentUser()['_id']).subscribe(res => {
+      console.log(res);
+    })
+    
   }
 
 }

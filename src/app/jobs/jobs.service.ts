@@ -64,6 +64,7 @@ export class JobsService {
   }
 
   public getJobsByDistace(long, lat , dist) {
+    let token = this.userService.retrieveToken()
     return this.http.get(this.jobsLink + "/" + long + "/" + lat + "/" + dist );
   }
 

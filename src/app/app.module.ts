@@ -26,12 +26,14 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { ViewJobGuard } from './jobs/view-job.guard';
 import { NgReduxModule, NgRedux } from '@angular-redux/store'; 
 import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
+import { store, ApplicationActionState } from './jobs/myApplicationsState';
+// import { ManageJobComponent } from './jobs/manage-job.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainMenuComponent, HomeComponent, RegistrationComponent, LoginComponent
+    MainMenuComponent, HomeComponent, RegistrationComponent, LoginComponent//, ManageJobComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,
@@ -61,9 +63,10 @@ import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(
-      rootReducer,
-      INITIAL_STATE);
-  }
+  constructor(ngRedux: NgRedux<{ ApplicationActionState, IAppState }>) {
+   // ngRedux.provideStore(store);
+  //   ngRedux.configureStore(
+  //     rootReducer,
+  //     INITIAL_STATE);
+   }
  }

@@ -17,18 +17,18 @@
   }
 
   .container {
-    margin: 10px;
+    margin: auto;
   }
 
   agm-map {
     height: 400px;
   }
 
-  div.columns {
+  div.my_columns {
     float: left;
-    margin-right: 70px;
+    margin-right: 50px;
   }
-  span.field {
+  span.my_field {
 
     font-weight: bold;
   }

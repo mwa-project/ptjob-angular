@@ -23,6 +23,13 @@ export class UserService {
   public signUp(user){
     return this.http.post(this.signUpLink, user);
   }
+  public updateResume(data){
+    // console.log('HELLO');
+    // console.log(data);
+    let updateResumeLink = this.getUrl("/users"); //server.host + ":" + server.port + "/users";
+    return  this.http.patch(updateResumeLink, data);
+    //console.log('FINISH PUT');
+  }
 
   getUrl(router: string): string {
     return server.host + ":" + server.port + router;
@@ -65,7 +72,7 @@ export class UserService {
     // console.log('store token: '+ content);
   }
 
-  private retrieveToken() {
+  public retrieveToken() {
     let storedToken: string = "";
     storedToken = localStorage.getItem(this.tokenKey);
     return storedToken;

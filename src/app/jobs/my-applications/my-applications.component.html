@@ -13,19 +13,22 @@
     <!-- <p matLine>Status: {{ app.status }}</p> -->
     <ul class="step">
       <!-- <li class="step-item" ng-class="{ active: (app.status == 'pending') }"> -->
-          <li class="step-item">
-              <a  class="tooltip" data-tooltip="Step 0: Post">Status: Post</a>
-            </li>
+      <li class="step-item">
+        <a class="tooltip" data-tooltip="Step 0: Post">Status: Post</a>
+      </li>
       <li class="step-item" [ngClass]="{ 'active': app.status == 'Pending' }">
-        <a  class="tooltip" data-tooltip="Step 1: Pending">Status: Pending</a>
+        <a class="tooltip" data-tooltip="Step 1: Pending">Status: Pending</a>
       </li>
       <li class="step-item" [ngClass]="{ 'active': app.status == 'Accept' }">
-        <a  class="tooltip" data-tooltip="Step 2: Accept">Status: Accept</a>
+        <a class="tooltip" data-tooltip="Step 2: Accept">Status: Accept</a>
       </li>
       <li class="step-item" [ngClass]="{ 'active': app.status == 'Done' }">
         <a class="tooltip" data-tooltip="Step 3: Done">Status: Done</a>
       </li>
     </ul>
+
+    <button *ngIf="showAccept" id="btn-manage" class="btn btn-sm" (click)="accept(app.job_id)">Accept</button>
+
 
   </mat-list-item>
 </mat-nav-list>

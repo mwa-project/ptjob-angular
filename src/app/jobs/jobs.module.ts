@@ -14,15 +14,28 @@ import { ViewJobComponent } from './view-job/view-job.component';
 import { MatFormFieldModule, MatInputModule,
    MatInput, MatIconModule, MatDatepickerModule, 
    MatSortModule, MatSelectModule, MatTableModule, 
+
    MatNativeDateModule, MatListModule, MatCardModule, MatDialogModule, MatButtonModule } from '@angular/material';
+
+  //  MatNativeDateModule, MatListModule, MatDialog, MatDialogModule, MatButtonModule } from '@angular/material';
+
    import {MatStepperModule} from '@angular/material/stepper';
 
 
 //import { MatFormFieldModule, MatInputModule, MatInput, MatIconModule, MatDatepickerModule, MatListModule, MatButtonModule, MatCardModule } from '@angular/material';
 
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import { ViewJobGuard } from './view-job.guard';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { ManageJobComponent } from './manage-job.component';
+import { ViewCompletedJobsComponent } from './view-completed-jobs/view-completed-jobs.component';
+import { MySuccessfulJobappsComponent } from './my-successful-jobapps/my-successful-jobapps.component';
+import { NgRedux } from '@angular-redux/store';
+import { ApplicationActionState } from './myApplicationsState';
+import { store } from './myApplicationsState';
+
 
 
 export const jobRoutes = [
@@ -67,14 +80,33 @@ export const jobRoutes = [
     MatDatepickerModule, MatButtonModule, MatCardModule,
    MatIconModule,MatFormFieldModule,
     MatListModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   declarations: [
     PostJobsComponent, 
     ReviewApplicationsComponent, 
     JobRatingComponent, 
     MyApplicationsComponent, 
-    ViewJobComponent
+    ViewJobComponent,
+    ViewJobComponent,
+    ManageJobComponent,
+    ViewCompletedJobsComponent,
+    MySuccessfulJobappsComponent
   ],
   providers: [ViewJobGuard]
+,
+    
+  exports: [
+    // ManageJobComponent
+  ],
+  entryComponents: [
+    ManageJobComponent
+  ]
 })
-export class JobsModule { }
+export class JobsModule { 
+
+  constructor( private nrRedux: NgRedux<ApplicationActionState>){
+      //   nrRedux.provideStore(store);
+  }
+}

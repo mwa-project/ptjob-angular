@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobService } from '../../services/job.service';
 import { UserService } from '../../users/user.service';
+import { store, AddApplicationAction } from '../myApplicationsState';
 
 @Component({
   selector: 'app-view-job',
@@ -95,9 +96,22 @@ export class ViewJobComponent implements OnInit {
 
     this.jobsService.applyJob(data).subscribe(x => {
       console.log(x);
+      store.dispatch(AddApplicationAction(
+        {
+          _id : user_id,
+          job_id: job_id,
+          job_name: job_name,
+          posted_date: posted_date,
+          applied_date: new Date(),
+          status: "submitted",
+          start_date: start_date,
+          end_date: end_date
+        }
+      ))
+     
     })
 
-    this.router.navigate(["view-jobs"])
+    this.router.navigate(["my-applications"])
   }
 
   ngOnInit() {
@@ -116,6 +130,8 @@ export class ViewJobComponent implements OnInit {
         this.jobService.getJobById(jobId).subscribe(res => {
           this.job = res['data'];
           this.jobsService.currentJob = this.job;
+
+          console.log(res);
         });
 
       }
