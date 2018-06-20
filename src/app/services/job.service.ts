@@ -34,4 +34,11 @@ export class JobService {
   public getJobById(jobId: string): Observable<Object> {
     return this.http.get(this.getUrl(jobId));
   }
+
+  public updateStatus(jobId: string, status: string): Observable<Object> {
+    console.log('updateStatus: ' + jobId + ', ' + status);
+    let url = this.getUrl(jobId + '/status/' + status);
+    console.log(url)
+    return this.http.patch(url, {});
+  }
 }

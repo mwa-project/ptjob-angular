@@ -29,4 +29,11 @@ export class ApplicationService {
       callback(res['data']['applicants']);
     });
   }
+
+  public accept(applicationId: string) {
+    console.log(applicationId);
+    // TODO:
+    // console.log('TODO: goto server');
+    
+  }
 }

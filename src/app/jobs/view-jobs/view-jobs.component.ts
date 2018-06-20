@@ -25,6 +25,7 @@ export class ViewJobsComponent implements OnInit {
   // constructor() { }
   // showManagement: boolean = false;
   //jobs: Array<Object>;
+  job: any;
   constructor(private jobService: JobService, 
     private ngRedux: NgRedux<IAppState>, 
     private actions: ManagementApplicationActions,  
@@ -53,20 +54,24 @@ export class ViewJobsComponent implements OnInit {
 
 
   onManageJobClicked(job: Object) {
+    this.job = job;
     console.log('onManageJobClicked()')
-    let dialogRef = this.dialog.open(ManageJobComponent, {
-      // height: '400px',
-      // width: '600px',
-    });
+    let dialogRef = this.dialog.open(ManageJobComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`); 
-      this.ngRedux.dispatch(this.actions.done());
-      console.log('dispatch');
+      console.log(result);
+      let newStatus = 'Pending';
+      if (result == 2) {
+        newStatus = 'Close';
+      } else if (result == 3) {
+        newStatus = 'Done';
+      }
+      this.jobService.updateStatus(this.job['_id'],newStatus).subscribe(result=> {
+        console.log(result['data']);
+      });
     });
   }
-
-  
 }
 
 

@@ -7,10 +7,10 @@ import { ManagementApplicationActions } from '../app.actions';
 @Component({
   selector: 'app-manage-job',
   template: `
-  <h1 mat-dialog-title>Add file</h1>
+  <h1 mat-dialog-title>Manage Job</h1>
 
   <mat-dialog-content>
-  <div class="content" [formGroup]="formData">
+  <!-- <div class="content">
     <label>If this job already finished, you can mark it done:</label>
     <br />
     <label class="form-radio form-inline">
@@ -26,48 +26,32 @@ import { ManagementApplicationActions } from '../app.actions';
         <i class="form-icon"></i> Close it
     </label>
 
-  </div>
+
+  </div> -->
+
+  If this job already finished, you can mark it done, <br />
+  Or maybe if you want to close it:
   </mat-dialog-content>
+
   <mat-dialog-actions>
-  <button mat-raised-button [mat-dialog-close]="formData.controls['gender'].value === Gender.MALE">No</button>
+  <button mat-raised-button [mat-dialog-close]="1">Cancel</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-raised-button [mat-dialog-close]="">Yes</button>
+  <button mat-raised-button [mat-dialog-close]="2">Close it</button>
+  <button mat-raised-button [mat-dialog-close]="3">Mark it Done</button>
 </mat-dialog-actions>
+
   `,
   styles: []
 })
-export class ManageJobComponent implements OnInit, OnDestroy {
+export class ManageJobComponent implements OnInit {
 
   public formData: FormGroup;
-  public Gender = Gender;
-  subscription;
-  constructor(private fb: FormBuilder, private ngRedux: NgRedux<IAppState>, private actions: ManagementApplicationActions) {
-    // this.processingJob$ = ngRedux.select<{_id: string, title: string}>('processingJob');
-    this.subscription = this.ngRedux.select<{ _id: string, title: string }>('processingJob')
-      .subscribe(item => {
-        console.log('got from redux: ' + item);
-        if (this.formData)
-          console.log(this.formData.value);        
-      });
+  constructor() {
    }
   
 
   ngOnInit() {
-    this.formData = this.fb.group({
-      gender: Gender.MALE
-    });
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-   }
 }
-
-
-export enum Gender {
-  FEMALE = 1,
-  MALE   = 2
-}
-
 
 
