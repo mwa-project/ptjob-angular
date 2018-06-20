@@ -50,7 +50,7 @@
       -->
       <button  class="btn btn-sm" [routerLink]="['/view-job', element._id]" >View</button>
 
-    <td mat-cell *matCellDef="let element">
+    <!-- <td mat-cell *matCellDef="let element"> -->
       <button *ngIf="showManagement" id="btn-manage" class="btn btn-sm" (click)="onManageJobClicked(element)">Manage</button>
       <button *ngIf="showManagement" class="btn btn-sm badge" attr.data-badge="{{ element.applicants.length }}" [routerLink]="['/applications', element._id]">Applications</button>
     </td>
