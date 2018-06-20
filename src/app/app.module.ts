@@ -25,13 +25,15 @@ import { JobsService } from './jobs/jobs.service';
 import { TokenInterceptor } from './services/token.interceptor';
 import { NgReduxModule, NgRedux } from '@angular-redux/store'; 
 import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
+import { BusyDialogComponent } from './busy-dialog.component';
 // import { ManageJobComponent } from './jobs/manage-job.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainMenuComponent, HomeComponent, RegistrationComponent, LoginComponent//, ManageJobComponent
+    MainMenuComponent, HomeComponent, RegistrationComponent, LoginComponent, BusyDialogComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, ReactiveFormsModule,
@@ -47,7 +49,7 @@ import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
      AgmCoreModule.forRoot({
        apiKey : server.apiKey
      }),
-     NgReduxModule
+     NgReduxModule, MatProgressSpinnerModule
 
   ],
   providers: [
@@ -58,7 +60,8 @@ import { IAppState, INITIAL_STATE, rootReducer } from './app.store';
       useClass: TokenInterceptor,
       multi: true
     }, ViewJobsComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [BusyDialogComponent]
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
