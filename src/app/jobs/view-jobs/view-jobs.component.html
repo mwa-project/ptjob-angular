@@ -1,4 +1,16 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+<router-outlet></router-outlet>
+
+
+<div class="search">
+   Search: <input type="text" #search /> <button mat-button   (click) = "searchString(search)" type="button">Search</button> 
+     ( long: {{longitude}} - lat : {{latitude}})   Maxi Dist: <input value= {{distone}} #dist type="number"> <button
+     (click) = "searchDistance(dist.value)" mat-button type="button">Search</button>
+   
+</div>
+<table  mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
 
 
   <ng-container matColumnDef="index">
@@ -14,7 +26,11 @@
 
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Description </th>
+
+    <td width = "35%" mat-cell *matCellDef="let element"> {{element.description}} </td>
+
     <td mat-cell *matCellDef="let element"> {{ (element.description.length>36)? (element.description | slice:0:36)+'..':(str) }}</td>
+
   </ng-container>
 
   <ng-container matColumnDef="start_date">
@@ -28,6 +44,12 @@
   </ng-container>
   <ng-container  matColumnDef="view">
     <th mat-header-cell *matHeaderCellDef> Applications </th>
+    <td  mat-cell *matCellDef="let element">
+      <!-- <button id="btn-manage" class="btn btn-sm" (click)="onManageJobClicked(element)">Manage</button>
+      <button class="btn btn-sm badge" attr.data-badge="{{ element.applicants.length }}" [routerLink]="['/applications', element._id]">Applications</button>
+      -->
+      <button  class="btn btn-sm" [routerLink]="['/view-job', element._id]" >View</button>
+
     <td mat-cell *matCellDef="let element">
       <button *ngIf="showManagement" id="btn-manage" class="btn btn-sm" (click)="onManageJobClicked(element)">Manage</button>
       <button *ngIf="showManagement" class="btn btn-sm badge" attr.data-badge="{{ element.applicants.length }}" [routerLink]="['/applications', element._id]">Applications</button>

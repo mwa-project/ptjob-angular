@@ -3,6 +3,7 @@ import { server } from '../../config';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { store, SetApplicationActions } from '../jobs/myApplicationsState';
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +73,7 @@ export class UserService {
     // console.log('store token: '+ content);
   }
 
-  private retrieveToken() {
+  public retrieveToken() {
     let storedToken: string = "";
     storedToken = localStorage.getItem(this.tokenKey);
     return storedToken;
@@ -80,6 +81,8 @@ export class UserService {
 
   private storeUser(user: Object) {
   localStorage.setItem(this.userKey, JSON.stringify(user));
+  store.dispatch(SetApplicationActions(user['job_applications']));
+  
   }
   public getCurrentUser() {
     let user = JSON.parse(localStorage.getItem(this.userKey));

@@ -1,3 +1,44 @@
-<p *ngIf="job">
-  {{ job.description }}
-</p>
+<mat-card *ngIf = "clicked"  class="example-card">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <div class="my_columns">
+      <mat-card-title> <span class="my_field">Title:</span>  {{ selectedJob.category }} </mat-card-title>
+      <mat-card-title> <span class="my_field">State :</span> {{ selectedJob.location.state }} </mat-card-title>
+      <mat-card-title> <span class="my_field">City :</span> {{ selectedJob.location.city }} </mat-card-title>
+      <mat-card-title> <span class="my_field">Employer: </span> {{ selectedJob.created_by.full_name }} </mat-card-title>
+    </div>
+    <div class="my_columns">
+    
+    <mat-card-title> <span class="my_field">Date Posted</span> {{ selectedJob.created_at | date }} </mat-card-title>
+    <mat-card-title>  <span class="my_field"> Duration From: </span>  {{ selectedJob.period.start_end | date }} <span class="field">to: </span> 
+        {{ selectedJob.period.end_date | date}} </mat-card-title>
+    <mat-card-title> <span class="my_field">Salary between : </span> {{ selectedJob.salary_range.from | currency  }} 
+        <span class="my_field">to: </span> {{ selectedJob.salary_range.to | currency  }} 
+    </mat-card-title>
+    
+    <mat-card-title> <span class="my_field">Status : </span> {{ status  }} 
+     
+  </mat-card-title>
+
+  </div>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+        <div class="my_columns">
+        <h6>Description</h6>
+      <p>
+            {{ selectedJob.description }}
+      </p>
+      </div><div class="my_columns">
+          <h6>Requirements</h6>
+      <ul *ngFor = "let r of selectedJob.requirements">
+           <li>{{r}}</li>
+      </ul>
+      </div>
+    </mat-card-content>
+    <mat-card-actions><div>
+      <button *ngIf="canApply" mat-button (click)= "applyForAjob(selectedJob)">Apply</button>
+      <button mat-button (click) = "closeJobWindow()">Close Window</button>
+      <button mat-button (click) = "toggleMap()">ToggleMap</button></div>
+    </mat-card-actions>
+  </mat-card> 

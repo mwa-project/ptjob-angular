@@ -14,3 +14,14 @@ table {
   #btn-manage {
     margin-right: 20px;
   }
+
+
+  .example-form-field {
+    width: 200px;
+  }
+
+  div.search {
+      margin: 20px;
+      padding: 10px;
+      text-align: center;
+  }

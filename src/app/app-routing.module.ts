@@ -18,9 +18,14 @@ import { MySuccessfulJobappsComponent } from './jobs/my-successful-jobapps/my-su
 const routes: Routes = [
 //  { path: "", component: HomeComponent,  loadChildren: './users/users.module#UsersModule' },
 { path: "", component: HomeComponent, children: jobRoutes },
+
+ { path: "my-applications", component: MyApplicationsComponent},
+ { path: "view-job/:id", component: ViewJobComponent,  children: jobRoutes,  },
+
 { path: "my-applications", component: MyApplicationsComponent},
 { path: "applications/:jobId", component: MyApplicationsComponent},
 { path: "view-job/:id", component: ViewJobComponent, children: jobRoutes },
+
  { path: "view-jobs", component: ViewJobsComponent, children: jobRoutes },
  { path: "view-jobs/:userId", component: ViewJobsComponent, children: jobRoutes },
  { path: "post-job", component: PostJobsComponent},

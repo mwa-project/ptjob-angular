@@ -15,8 +15,13 @@
       <a  mat-list-item [routerLink] ="['']">Home</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['profile']">Profile</a>
       <a *ngIf="!user" mat-list-item [routerLink] = "['sign-up']">Sign up</a>
+
+      <!-- <a *ngIf="!user" mat-list-item [routerLink] = "['login']">Login</a> -->
+      <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs', user._id]">Search Jobs</a>
+
       <a *ngIf="!user" mat-list-item (click)="onLogin()" [routerLink] = "['login']">Login</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['sign-up']">Search Jobs</a>
+
       <a *ngIf="user" mat-list-item [routerLink] = "['post-job']">Post a Job</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs']">Job List</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs', user._id]">View My Posts</a>
@@ -28,7 +33,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar  color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -36,8 +41,8 @@
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Job Search</span>
+      </button><span>Job Search</span>
+      
     </mat-toolbar>
    
     <router-outlet>

@@ -1,8 +1,13 @@
+import { DataSource } from '@angular/cdk/table';
+import { store, AddApplicationAction } from './../myApplicationsState';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../users/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationService } from '../../services/application.service';
 import { JobService } from '../../services/job.service';
+import { select } from '@angular-redux/store';
+import { ApplicationActionState } from '../myApplicationsState';
 
 @Component({
   selector: 'app-my-applications',
@@ -10,7 +15,7 @@ import { JobService } from '../../services/job.service';
   styleUrls: ['./my-applications.component.css']
 })
 export class MyApplicationsComponent implements OnInit {
-
+ // @select('data') applications: Observable<ApplicationActionState>
   user: Object;
   apps: Array<Object>;
   isAccept = true;
@@ -19,9 +24,32 @@ export class MyApplicationsComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private appliationService: ApplicationService, 
     private jobService: JobService,
-    private userService: UserService) { }
+    private userService: UserService) {
+
+     
+     
+
+      // store.subscribe( () => {
+      //   let s = store.
+      //  console.log(s)
+      // });
+      console.log('this.applications');
+      // this.applications.subscribe( x => {
+      //   console.log(x);
+      // })
+     }
 
   ngOnInit() {
+
+    console.log('this.applications');
+    console.log( store.getState().applicationReducer);
+    console.log( store.getState().manageReducer.processingJob);
+
+    store.subscribe(()=>{
+      console.log('here');
+      console.log(store.getState().applicationReducer)
+    });
+    
     this.activatedRoute.params.subscribe(params => {
       let jobId = params['jobId'];
       if (jobId) {

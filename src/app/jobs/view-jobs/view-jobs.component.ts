@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { JobsService } from './../jobs.service';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 
 
 
@@ -17,33 +19,91 @@ import { ManageJobComponent } from '../manage-job.component';
   styleUrls: ['./view-jobs.component.css']
 })
 export class ViewJobsComponent implements OnInit {
+  distone = 1000;
 
+  longitude;
+  latitude
 
-  displayedColumns = ['index','category', 'description', 'start_date', 'end_date', 'view'];
-  dataSource ;
-  
+  displayedColumns = ['index', 'category', 'description', 'start_date', 'end_date', 'view'];
+  dataSource;
+
+  public getPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+      //this.distIn.value = 2000;
+      this.searchDistance(1000);
+    });
+  }
   // constructor() { }
   showManagement: boolean = false;
   //jobs: Array<Object>;
-  job: any;
-  constructor(private jobService: JobService, 
-    private ngRedux: NgRedux<IAppState>, 
-    private actions: ManagementApplicationActions,  
+
+  job;
+  // constructor(private jobService: JobService, private jobsService: JobsService, private router: Router) {
+  constructor(private jobService: JobService, private jobsService: JobsService, private router: Router,
+    private ngRedux: NgRedux<IAppState>, private actions: ManagementApplicationActions,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog) {
 
+    // console.log(this.dist);
+
+    this.getPosition();
+    //  this.searchDistance(5000);
     // this.jobService.getJobs().subscribe(list => {
     //   this.dataSource = list;
-    //   this.showManagement = false;
     // });
-   }
+  }
 
-   ngOnInit() {
-     this.activatedRoute.params.subscribe(params => {
-       let userId = params['userId'];
-       if (userId) {
+  viewJob(job) {
+
+    this.jobsService.currentJob = job;
+    this.router.navigate(['view-job', job._id]);
+  }
+
+  searchString(search) {
+    this.jobsService.getJobsByText(search.value).subscribe(list => {
+      this.dataSource = list['data'];
+      console.log(list)
+    });
+  }
+
+  searchDistance(dist) {
+    console.log(dist);
+    this.jobsService.getJobsByDistace(this.longitude, this.latitude, dist).subscribe(list => {
+      this.dataSource = list['data'];
+      console.log(list)
+    });
+  }
+
+  ngOnInit() {
+
+    this.jobsService.location.subscribe(x => {
+      this.latitude = x['latitude'];
+      this.longitude = x['longitude'];
+      console.log(this.latitude);
+      //this.distIn.value = 2000;
+      this.searchDistance(1000);
+    })
+
+
+    // constructor(private jobService: JobService, 
+    //   private ngRedux: NgRedux<IAppState>, 
+    //   private actions: ManagementApplicationActions,  
+    //   private activatedRoute: ActivatedRoute,
+    //   private dialog: MatDialog) {
+
+    //   // this.jobService.getJobs().subscribe(list => {
+    //   //   this.dataSource = list;
+    //   //   this.showManagement = false;
+    //   // });
+    //  }
+
+    this.activatedRoute.params.subscribe(params => {
+      let userId = params['userId'];
+      if (userId) {
         console.log('show job list by user ID: ' + params['userId']);
-        
+
 
         this.jobService.getJobsByUserId(userId).subscribe(res => {
           console.log(res['data'])
@@ -51,18 +111,19 @@ export class ViewJobsComponent implements OnInit {
           this.dataSource = res['data']
           this.showManagement = true;
         })
-       } else {
-         console.log('show the full job list');
-         this.jobService.getJobs().subscribe(list => {
-           console.log(list)
+      } else {
+        console.log('show the full job list');
+        this.jobService.getJobs().subscribe(list => {
+          console.log(list)
           //  this.dataSource.clear();
-           this.dataSource = list;
-           this.showManagement = false;
+          // this.dataSource = list;
+          this.showManagement = false;
         });
-         
-       }
-       
-     });
+
+      }
+
+    });
+
     // this.jobService.getJobs().subscribe(list => {
     //   this.jobs = list;
     // });
