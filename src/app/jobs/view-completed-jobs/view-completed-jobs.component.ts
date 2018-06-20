@@ -74,7 +74,9 @@ export class ViewCompletedJobsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result); 
-      this.jobService.updateRating(result);
+      this.jobService.updateRating(result).subscribe(res => {
+        console.log('update success!')
+      });
       //this.ngRedux.dispatch(this.actions.done());
       //console.log('dispatch');
 
