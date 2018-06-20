@@ -2,29 +2,69 @@
   rating-dialog works!
 </p> -->
 
-<h1 mat-dialog-title>Add file</h1>
+<h2 mat-dialog-title>{{title}}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  
+    <!-- <mat-form-field>
+        <input matInput placeholder="Rating" formControlName="rating">
+    </mat-form-field> -->
+    <p>
+        <mat-radio-group  appearance="standard"  formControlName="rating_value">
+            <div class="mybutton"><mat-label>Rating</mat-label></div>
+            <span class="mybutton"><mat-radio-button value="1">1</mat-radio-button></span>
+            <span class="mybutton"><mat-radio-button value="2">2 </mat-radio-button></span>
+            <span class="mybutton"><mat-radio-button value="3">3</mat-radio-button></span>
+            <span class="mybutton"><mat-radio-button value="4">4</mat-radio-button></span>
+            <span class="mybutton"><mat-radio-button value="5">5</mat-radio-button></span>
+            
+          
+      
+        </mat-radio-group>
+    </p>
+    
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Comments" formControlName="comment">
+      </mat-form-field>
+    </p>
+    
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>
+
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>Please input the rate below</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.rate_value">
+  </mat-form-field>
+  <p>Comments</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.comments">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->
+
+
+<!-- <h1 mat-dialog-title>Rating From Employer to Employee</h1>
 
   <mat-dialog-content>
-    <div class="content" [formGroup]="formData">
-      <label>If this job already finished, you can mark it done:</label>
-      <br />
-      <label class="form-radio form-inline">
-          <input type="radio" name="gender"  [value]="Gender.FEMALE" [checked]="formData.controls['gender'].value === Gender.FEMALE">
-          <i class="form-icon"></i> Mark it Done
-      </label>
-      <br />
-      <br />
-      <label>Or maybe if you want to close it:</label>
-      <br />
-      <label class="form-radio form-inline">
-          <input id="gender" type="radio" name="gender"   [value]="Gender.MALE" [checked]="formData.controls['gender'].value === Gender.MALE">
-          <i class="form-icon"></i> Close it
-      </label>
-
-    </div>
+  Please select the rate below:
   </mat-dialog-content>
-  <mat-dialog-actions>
-  <button mat-raised-button [mat-dialog-close]="formData.controls['gender'].value === Gender.MALE">No</button>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-raised-button [mat-dialog-close]="">Yes</button>
-</mat-dialog-actions>
+
+<mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="1">1</button>
+  <button mat-raised-button [mat-dialog-close]="2">2</button>
+  <button mat-raised-button [mat-dialog-close]="3">3</button>
+  <button mat-raised-button [mat-dialog-close]="4">4</button>
+  <button mat-raised-button [mat-dialog-close]="5">5</button>  
+</mat-dialog-actions> -->

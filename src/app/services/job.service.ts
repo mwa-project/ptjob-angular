@@ -44,6 +44,16 @@ export class JobService {
   //   console.log(url)
   //   return this.http.patch(url, {});
   // }
+  public updateRating(data){
+    console.log('HALO updateRating(data)');
+    console.log(data);
+    // console.log(this.jobPostLink+'/update_rating');
+    
+    // return this.http.put(this.jobPostLink, data); //+'/update_rating'
+    let url = this.getUrl(data.job_id + '/update_rating');
+    console.log(url)
+    return this.http.patch(url, data);
+  }
 
   public competed(jobId: string) {
     let url = this.getUrl(jobId + '/competed');
