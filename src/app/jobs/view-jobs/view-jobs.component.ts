@@ -77,7 +77,7 @@ export class ViewJobsComponent implements OnInit {
       if (result == 2) {
         // Close
         this.jobService.close(this.job['_id']).subscribe(res => {
-          console.log(`close: ${res}`)
+          console.log(`close: ${res['data']}`)
 
         })
       } else if (result == 3) {
