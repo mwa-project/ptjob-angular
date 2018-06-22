@@ -23,3 +23,8 @@
   height: 50px;
   margin-right: 10px;
 }
+mat-nav-list > a {
+
+  font-size: 15px;
+
+}

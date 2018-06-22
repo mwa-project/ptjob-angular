@@ -5,7 +5,7 @@
       <mat-card-title> <span class="my_field">Title:</span>  {{ selectedJob.category }} </mat-card-title>
       <mat-card-title> <span class="my_field">State :</span> {{ selectedJob.location.state }} </mat-card-title>
       <mat-card-title> <span class="my_field">City :</span> {{ selectedJob.location.city }} </mat-card-title>
-      <mat-card-title> <span class="my_field">Employer: </span> {{ selectedJob.created_by.full_name }} </mat-card-title>
+      <mat-card-title> <span class="my_field">Employer: </span> {{ selectedJob.created_by? selectedJob.created_by.full_name : '' }} </mat-card-title>
     </div>
     <div class="my_columns">
     

@@ -17,13 +17,12 @@
       <a *ngIf="!user" mat-list-item [routerLink] = "['sign-up']">Sign up</a>
 
       <!-- <a *ngIf="!user" mat-list-item [routerLink] = "['login']">Login</a> -->
-      <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs', user._id]">Search Jobs</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs']">Search Jobs</a>
 
       <a *ngIf="!user" mat-list-item (click)="onLogin()" [routerLink] = "['login']">Login</a>
-      <a *ngIf="user" mat-list-item [routerLink] = "['sign-up']">Search Jobs</a>
 
       <a *ngIf="user" mat-list-item [routerLink] = "['post-job']">Post a Job</a>
-      <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs']">Job List</a>
+      <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs',user._id]">Job List</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['view-jobs', user._id]">View My Posts</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['my-applications']">My Applications</a>
       <a *ngIf="user" mat-list-item [routerLink] = "['view-completed-job-posts']">My Completed Posts</a>

@@ -32,7 +32,9 @@ export class ViewJobsComponent implements OnInit {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
       //this.distIn.value = 2000;
-      this.searchDistance(1000);
+      let loc = { longitude: this.longitude, latitude : this.latitude} ;
+      this.jobsService.setLocation(loc)
+      //this.searchDistance(1000);
     });
   }
   // constructor() { }
@@ -70,21 +72,18 @@ export class ViewJobsComponent implements OnInit {
 
   searchDistance(dist) {
     console.log(dist);
-    this.jobsService.getJobsByDistace(this.longitude, this.latitude, dist).subscribe(list => {
-      this.dataSource = list['data'];
-      console.log(list)
-    });
+
+        this.jobsService.getJobsByDistace(this.longitude, this.latitude, dist).subscribe(list => {
+          this.dataSource = list['data'];
+         // console.log(list)
+         // console.log(list + 'sds')
+        });
+  
   }
 
   ngOnInit() {
 
-    this.jobsService.location.subscribe(x => {
-      this.latitude = x['latitude'];
-      this.longitude = x['longitude'];
-      console.log(this.latitude);
-      //this.distIn.value = 2000;
-      this.searchDistance(1000);
-    })
+   
 
 
     // constructor(private jobService: JobService, 
@@ -117,6 +116,13 @@ export class ViewJobsComponent implements OnInit {
           console.log(list)
           //  this.dataSource.clear();
           // this.dataSource = list;
+          this.jobsService.location.subscribe(x => {
+            this.latitude = x['latitude'];
+            this.longitude = x['longitude'];
+            console.log(this.latitude);
+            //this.distIn.value = 2000;
+            this.searchDistance(1000);
+          })
           this.showManagement = false;
         });
 

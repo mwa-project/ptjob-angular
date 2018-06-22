@@ -18,34 +18,14 @@ export class ViewJobComponent implements OnInit {
   showMap: boolean;
   status;
   canApply: boolean;
+  jobs = [];
 
   constructor(private jobService: JobService, private jobsService: JobsService,
     private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
 
-      // this.clicked = true;
-    this.jobsService.currentJob.subscribe(job => {
-      this.job = job
-      this.clicked = true;
-      this.selectedJob = this.job;
-      let myApplications = this.userService.getCurrentUser().job_applications;
-      let thiJob = myApplications.filter(job_id => job_id == this.selectedJob._id);
-      this.status = this.selectedJob.status;
-
-      if (thiJob.length > 0) {
-        this.status = thiJob[0].status;
-      }
-
-      if (this.status == "open")
-        this.canApply = true;
-
-        if(this.selectedJob.created_by.user_id == this.userService.getCurrentUser()._id)
-        this.canApply = false;
-
-        console.log("assd");
-
-    });
-
-    console.log(this.userService.getCurrentUser().job_applications[0])
+      console.log('here_my_state');
+      
+     
     this.jobsService.setMap(true);
     this.showMap = true;
 
@@ -95,10 +75,11 @@ export class ViewJobComponent implements OnInit {
     }
 
     this.jobsService.applyJob(data).subscribe(x => {
+      console.log("myjobhere")
       console.log(x);
       store.dispatch(AddApplicationAction(
         {
-          _id : user_id,
+          _id: user_id,
           job_id: job_id,
           job_name: job_name,
           posted_date: posted_date,
@@ -108,13 +89,58 @@ export class ViewJobComponent implements OnInit {
           end_date: end_date
         }
       ))
-     
+
     })
 
     this.router.navigate(["my-applications"])
   }
 
   ngOnInit() {
+   
+
+    store.subscribe(() => {
+      this.jobs = store.getState().applicationReducer.data;
+      console.log('here_subscribe');
+      console.log(store.getState().applicationReducer.data)
+
+
+    });
+
+
+    // this.clicked = true;
+      this.jobsService.currentJob.subscribe(job => {
+        console.log("myjobhere")
+        console.log(job);
+      this.job = job
+      this.clicked = true;
+      this.selectedJob = this.job;
+      this.jobs = store.getState().applicationReducer.data;
+      console.log(this.jobs)
+      // console.log(this.jobs)
+      // let myApplications = this.userService.getCurrentUser().job_applications;
+      let thiJob = this.jobs.filter(job => { 
+        console.log(job)
+        console.log(this.selectedJob._id)
+        return job.job_id == this.selectedJob._id
+      });
+      this.status = this.selectedJob.status;
+      console.log(thiJob)
+      if (thiJob.length > 0) {
+        this.status = thiJob[0].status;
+        console.log("status" + this.status)
+      }
+
+      if (this.status == "open")
+        this.canApply = true;
+      if(this.selectedJob.created_by) {
+      if (this.selectedJob.created_by.user_id == this.userService.getCurrentUser()._id)
+        this.canApply = false;
+      }
+
+      console.log("assd");
+
+    });
+
 
     // this.jobsService.currentJob.subscribe(job => {
     //   this.job = job

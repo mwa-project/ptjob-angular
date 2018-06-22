@@ -81,8 +81,8 @@ export class UserService {
 
   private storeUser(user: Object) {
   localStorage.setItem(this.userKey, JSON.stringify(user));
+  localStorage.removeItem('job_applications');
   store.dispatch(SetApplicationActions(user['job_applications']));
-  
   }
   public getCurrentUser() {
     let user = JSON.parse(localStorage.getItem(this.userKey));

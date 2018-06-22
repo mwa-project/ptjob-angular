@@ -4,6 +4,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserService } from '../users/user.service';
+import { store } from 'src/app/jobs/myApplicationsState';
 
 @Component({
   selector: 'main-menu',
@@ -21,6 +22,7 @@ export class MainMenuComponent {
     
   constructor(private breakpointObserver: BreakpointObserver, private userService: UserService) {
     // this.user = this.userService.getCurrentUser();
+    store.subscribe(()=>{})
   }
 
   ngAfterContentChecked() {

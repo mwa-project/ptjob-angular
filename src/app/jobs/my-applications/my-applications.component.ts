@@ -18,6 +18,7 @@ export class MyApplicationsComponent implements OnInit {
  // @select('data') applications: Observable<ApplicationActionState>
   user: Object;
   apps: Array<Object>;
+  myApps
   isAccept = true;
   showAccept = false;
   constructor(
@@ -42,12 +43,18 @@ export class MyApplicationsComponent implements OnInit {
   ngOnInit() {
 
     console.log('this.applications');
-    console.log( store.getState().applicationReducer);
-    console.log( store.getState().manageReducer.processingJob);
+    this.myApps = store.getState().applicationReducer.data;
+    if( !this.showAccept) {
+      this.apps = this.myApps
+    }
 
     store.subscribe(()=>{
       console.log('here');
       console.log(store.getState().applicationReducer)
+      this.myApps = store.getState().applicationReducer.data;
+      if( !this.showAccept) {
+        this.apps = this.myApps
+      }
     });
     
     this.activatedRoute.params.subscribe(params => {
@@ -62,7 +69,7 @@ export class MyApplicationsComponent implements OnInit {
       } else {
         console.log('get applications by current user');
         this.appliationService.getMyApplications(apps => {
-          this.apps = apps;
+        //  this.apps = apps;
           console.log(this.apps);
           this.showAccept = false;
         });

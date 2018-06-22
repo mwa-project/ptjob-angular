@@ -39,7 +39,7 @@ export function SetApplicationActions( applicationData : JobApplication){
 
 const initialState : ApplicationActionState = {
     
-    data  : []
+    data  :  localStorage.getItem('job_applications')?  JSON.parse(localStorage.getItem('job_applications')) : []
 }
 
 function addApplication(state, action): ApplicationActionState {
@@ -50,8 +50,8 @@ function addApplication(state, action): ApplicationActionState {
 
 
 function setApplications(state, action): ApplicationActionState {
-
-    return Object.assign({}, state, { data :[...state.data, ...action.data] } );
+    
+    return Object.assign({}, state, { data :[...action.data] } );
 
 }
 
