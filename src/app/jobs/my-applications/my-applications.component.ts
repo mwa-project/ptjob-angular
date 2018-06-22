@@ -27,30 +27,19 @@ export class MyApplicationsComponent implements OnInit {
     private jobService: JobService,
     private userService: UserService) {
 
-     
-     
 
-      // store.subscribe( () => {
-      //   let s = store.
-      //  console.log(s)
-      // });
-      console.log('this.applications');
-      // this.applications.subscribe( x => {
-      //   console.log(x);
-      // })
      }
 
   ngOnInit() {
 
-    console.log('this.applications');
+   //Rex data comes here
     this.myApps = store.getState().applicationReducer.data;
     if( !this.showAccept) {
       this.apps = this.myApps
     }
 
+    //subscribe for updated state from store data comes here
     store.subscribe(()=>{
-      console.log('here');
-      console.log(store.getState().applicationReducer)
       this.myApps = store.getState().applicationReducer.data;
       if( !this.showAccept) {
         this.apps = this.myApps
@@ -70,43 +59,14 @@ export class MyApplicationsComponent implements OnInit {
         console.log('get applications by current user');
         this.appliationService.getMyApplications(apps => {
         //  this.apps = apps;
+        //replaced by redux
           console.log(this.apps);
           this.showAccept = false;
         });
       }
     });
     
-    // this.user = this.userService.getCurrentUser();
-    // this.apps = this.user['job_applications'];
-    // this.apps = [{
-    //   job_id: '5b27da26eab89f87b1897cc7',
-    //   job_name: "Sales Associate job" , 
-    //   posted_date: Date.now(), 
-    //   applied_date: Date.now(), 
-    //   status: "Done", 
-    //   start_date: Date.now(), 
-    //   end_date: Date.now()
-    // },
-    // {
-    //   job_id: '5b27da26eab89f87b1897cc7',
-    //   job_name: "Package Handler " , 
-    //   posted_date: Date.now(), 
-    //   applied_date: Date.now(), 
-    //   status: "Accept", 
-    //   start_date: Date.now(), 
-    //   end_date: Date.now()
-    // },
-    // {
-    //   job_id: '5b27da26eab89f87b1897cc7',
-    //   job_name: "Package Handler " , 
-    //   posted_date: Date.now(), 
-    //   applied_date: Date.now(), 
-    //   status: "Pending", 
-    //   start_date: Date.now(), 
-    //   end_date: Date.now()
-    // }];
-    // console.log(this.user);
-    // console.log(this.apps);
+
   }
 
   accept(jobId: string) {
